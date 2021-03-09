@@ -1,0 +1,354 @@
+.loader_container {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  background: #f5f5f5ad;
+}
+
+.centering-block {
+  text-align: center;
+}
+
+.centering-block:before {
+  content: "";
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  margin-right: -0.25em;
+}
+
+.centered {
+  display: inline-block;
+  vertical-align: middle;
+  width: 300px;
+}
+
+.loader {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  animation: roll_dice 2.2222222222s infinite ease-in;
+}
+.loader .square {
+  background-color: #FFFFFF;
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  opacity: 1;
+  transition: background-color 0.25s;
+}
+.loader .row {
+  width: 68px;
+  margin: 20px auto;
+}
+.loader .square_one {
+  animation: square_one 10s infinite;
+}
+.loader .square_two {
+  animation: square_two 10s infinite;
+}
+.loader .square_three {
+  animation: square_three 10s infinite;
+}
+.loader .square_four {
+  animation: square_four 10s infinite;
+}
+.loader .square_five {
+  animation: square_five 10s infinite;
+}
+.loader .square_six {
+  animation: square_six 10s infinite;
+}
+.loader .square_seven {
+  animation: square_seven 10s infinite;
+}
+.loader .square_eight {
+  animation: square_eight 10s infinite;
+}
+.loader .square_nine {
+  animation: square_nine 10s infinite;
+}
+
+@keyframes roll_dice {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(180deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  75% {
+    transform: rotate(360deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes square_one {
+  0% {
+    background-color: #FFFFFF;
+  }
+  12.5% {
+    background-color: #FFFFFF;
+  }
+  25% {
+    background-color: #2b190a;
+  }
+  37.5% {
+    background-color: #FFFFFF;
+  }
+  50% {
+    background-color: #2b190a;
+  }
+  62.5% {
+    background-color: #2b190a;
+  }
+  75% {
+    background-color: #2b190a;
+  }
+  87.5% {
+    background-color: #f2ece4;
+  }
+  100% {
+    background-color: #FFFFFF;
+  }
+}
+@keyframes square_two {
+  0% {
+    background-color: #FFFFFF;
+  }
+  12.5% {
+    background-color: #FFFFFF;
+  }
+  25% {
+    background-color: #FFFFFF;
+  }
+  37.5% {
+    background-color: #FFFFFF;
+  }
+  50% {
+    background-color: #FFFFFF;
+  }
+  62.5% {
+    background-color: #FFFFFF;
+  }
+  75% {
+    background-color: #FFFFFF;
+  }
+  87.5% {
+    background-color: #f2ece4;
+  }
+  100% {
+    background-color: #FFFFFF;
+  }
+}
+@keyframes square_three {
+  0% {
+    background-color: #FFFFFF;
+  }
+  12.5% {
+    background-color: #FFFFFF;
+  }
+  25% {
+    background-color: #FFFFFF;
+  }
+  37.5% {
+    background-color: #2b190a;
+  }
+  50% {
+    background-color: #2b190a;
+  }
+  62.5% {
+    background-color: #2b190a;
+  }
+  75% {
+    background-color: #2b190a;
+  }
+  87.5% {
+    background-color: #f2ece4;
+  }
+  100% {
+    background-color: #FFFFFF;
+  }
+}
+@keyframes square_four {
+  0% {
+    background-color: #FFFFFF;
+  }
+  12.5% {
+    background-color: #FFFFFF;
+  }
+  25% {
+    background-color: #FFFFFF;
+  }
+  32.5% {
+    background-color: #FFFFFF;
+  }
+  50% {
+    background-color: #FFFFFF;
+  }
+  62.5% {
+    background-color: #FFFFFF;
+  }
+  75% {
+    background-color: #2b190a;
+  }
+  87.5% {
+    background-color: #f2ece4;
+  }
+  100% {
+    background-color: #FFFFFF;
+  }
+}
+@keyframes square_five {
+  0% {
+    background-color: #FFFFFF;
+  }
+  12.5% {
+    background-color: #2b190a;
+  }
+  25% {
+    background-color: #FFFFFF;
+  }
+  37.5% {
+    background-color: #2b190a;
+  }
+  50% {
+    background-color: #FFFFFF;
+  }
+  62.5% {
+    background-color: #2b190a;
+  }
+  75% {
+    background-color: #FFFFFF;
+  }
+  87.5% {
+    background-color: #f2ece4;
+  }
+  100% {
+    background-color: #FFFFFF;
+  }
+}
+@keyframes square_six {
+  0% {
+    background-color: #FFFFFF;
+  }
+  12.5% {
+    background-color: #FFFFFF;
+  }
+  25% {
+    background-color: #FFFFFF;
+  }
+  37.5% {
+    background-color: #FFFFFF;
+  }
+  50% {
+    background-color: #FFFFFF;
+  }
+  62.5% {
+    background-color: #FFFFFF;
+  }
+  75% {
+    background-color: #2b190a;
+  }
+  87.5% {
+    background-color: #f2ece4;
+  }
+  100% {
+    background-color: #FFFFFF;
+  }
+}
+@keyframes square_seven {
+  0% {
+    background-color: #FFFFFF;
+  }
+  12.5% {
+    background-color: #FFFFFF;
+  }
+  25% {
+    background-color: #FFFFFF;
+  }
+  37.5% {
+    background-color: #2b190a;
+  }
+  50% {
+    background-color: #2b190a;
+  }
+  62.5% {
+    background-color: #2b190a;
+  }
+  75% {
+    background-color: #2b190a;
+  }
+  87.5% {
+    background-color: #f2ece4;
+  }
+  100% {
+    background-color: #FFFFFF;
+  }
+}
+@keyframes square_eight {
+  0% {
+    background-color: #FFFFFF;
+  }
+  12.5% {
+    background-color: #FFFFFF;
+  }
+  25% {
+    background-color: #FFFFFF;
+  }
+  37.5% {
+    background-color: #FFFFFF;
+  }
+  50% {
+    background-color: #FFFFFF;
+  }
+  62.5% {
+    background-color: #FFFFFF;
+  }
+  75% {
+    background-color: #FFFFFF;
+  }
+  87.5% {
+    background-color: #f2ece4;
+  }
+  100% {
+    background-color: #FFFFFF;
+  }
+}
+@keyframes square_nine {
+  0% {
+    background-color: #FFFFFF;
+  }
+  12.5% {
+    background-color: #FFFFFF;
+  }
+  25% {
+    background-color: #2b190a;
+  }
+  37.5% {
+    background-color: #FFFFFF;
+  }
+  50% {
+    background-color: #2b190a;
+  }
+  62.5% {
+    background-color: #2b190a;
+  }
+  75% {
+    background-color: #2b190a;
+  }
+  87.5% {
+    background-color: #f2ece4;
+  }
+  100% {
+    background-color: #FFFFFF;
+  }
+}

@@ -1,0 +1,63 @@
+.photo-btn{
+    float: left;
+    width: 100px;
+    height: 63px;
+    margin: 10px;
+}
+.photo-box{
+    position: relative;
+    float: left;
+    margin: 10px;
+    width: 100px;
+}
+.photo-box span{
+    position: absolute;
+    padding: 0 6px 2px;
+    background: #ff000099;
+    color: #fff;
+    right: 0;
+    font-size: 11px;
+    border-bottom-left-radius: 6px;
+    cursor: pointer;
+}
+.photo-box img{
+    width: 100%;
+}
+
+
+
+
+.card-header.nav-bar .photo-add{
+    position: relative;
+    float: right;
+    background-color: #fff;
+    padding: 20px 20px;
+    font-size: 14px;
+    color: #333;
+}
+.card-header.nav-bar .photo-add input{
+    opacity:0;
+    position: absolute;
+    z-index:99;width:100%;
+    height: 100%;
+    top:0;
+    left:0;
+    cursor: pointer;
+}
+.card-header.nav-bar .photo-add i{
+    margin-right: 7px;
+    font-size: 16px;
+}
+.card .remove{
+    position: absolute;
+    right: 0;
+    top: 0;
+    cursor: pointer;
+    background-color: #fff;
+    color: #2D2D2D;
+    padding: 6px 10px;
+    font-size: 16px;
+    border-bottom-left-radius: 7px;
+    box-shadow: -1px 1px 1px rgba(0, 0, 0, 0.1);
+    z-index: 9;
+}
