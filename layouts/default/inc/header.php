@@ -46,7 +46,7 @@
                                 </ul>
                             </nav>
                         </div>
-               
+
                         <!--  <div class="search-style-2 f-right">
                             <a class="icon-search-2" href="#">
                                 <i class="pe-7s-search"></i>
@@ -62,7 +62,7 @@
                                 </form>
                             </div>
                         </div> -->
-                        <? $cart_data = $cnt->getToCart(); ?>
+                        <?php $cart_data = $cnt->getToCart(); ?>
                         <div class="shopping-cart f-right">
                             <a class="top-cart" href="/cart"><i class="pe-7s-cart"></i></a>
                             <span class="cart_count"><?=((isset($cart_data['count'])) ? $cart_data['count'] : "0");?></span>

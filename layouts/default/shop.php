@@ -53,7 +53,7 @@
                                     <h3 class="sidebar-title"><?= $cnt->val['category'] ?></h3>
                                     <div class="sidebar-list">
                                         <ul>
-                                            <? $lang = $_SESSION['lang'];
+                                            <?php $lang = $_SESSION['lang'];
                                             foreach ($cnt->get_filter()['cat'] as $key => $value) { ?>
                                                 <li>
                                                     <label>
@@ -62,7 +62,7 @@
                                                         <span style="margin-left:8px;"><?= $value['title_' . $lang] ?></span>
                                                     </label>
                                                 </li>
-                                            <? } ?>
+                                            <?php } ?>
                                         </ul>
                                     </div>
                                 </div>
@@ -70,7 +70,7 @@
                                     <h3 class="sidebar-title"><?= $cnt->val['choose_type'] ?></h3>
                                     <div class="sidebar-list">
                                         <ul>
-                                            <? $lang = $_SESSION['lang'];
+                                            <?php $lang = $_SESSION['lang'];
                                             foreach ($cnt->get_filter()['type'] as $key => $value) { ?>
                                                 <li class="goods-type type-<?= $value['catID'] ?>">
                                                     <label>
@@ -79,17 +79,17 @@
                                                         <span style="margin-left:8px;"><?= $value['title_' . $lang] ?></span>
                                                     </label>
                                                 </li>
-                                            <? } ?>
+                                            <?php } ?>
                                         </ul>
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <?php $banners = $cnt->getBanner(["type"=>"aside", "orderby_rand"=>true, "limit"=>'1']);?>
                             <?php if(count($banners) > 0){?>
                             <div class="blog-sidebar mt-40">
                                 <?php foreach($banners as $banner) {?>
-                                <?php $photo = $cnt->getPhoto("banner", $banner["id"], 1);?>  
+                                <?php $photo = $cnt->getPhoto("banner", $banner["id"], 1);?>
                                 <div class="single-sidebar" style="padding:20px 15px;">
                                     <a href="<?=$banner["link"]?>" target="_blank">
                                         <h3 class="sidebar-title" style="margin-bottom:5px;"><?= $banner['title']?></h3>
@@ -102,8 +102,8 @@
                             </div>
                             <?php }?>
                         </div>
-                        
-                        
+
+
                         <div class="col-md-9">
                             <div class="blog-wrapper shop-page-mrg">
                                 <div class="tab-menu-product">
@@ -123,7 +123,7 @@
 														<?= $cnt->val['list'] ?>
 													</a>
 												</li>
-											</ul> 
+											</ul>
 										</div>
 									</div>
 									-->

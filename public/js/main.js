@@ -1,5 +1,7 @@
 var config = {};
 
+let lang = $("meta[name=lang]").attr('content');
+
 $(function(){
     $.ajax({
         url: '?cmd=getConfig',
@@ -24,7 +26,7 @@ $(document).on('submit', '.form-ajax', function(e){
 	$(this).ajaxSubmit(function(data){
 		$(form).find(".page-loader").fadeOut();
 		var response = $.parseJSON(data);
-		
+
 		if(response.location !== false && typeof response.location !== "undefined"){
 			if(response.location.hash !== false){
 				sendAlert("Ok", "", "success");
@@ -38,11 +40,11 @@ $(document).on('submit', '.form-ajax', function(e){
 				}
 			}
 		}
-		
-		if(response.alert !== false && typeof response.alert !== "undefined"){    
+
+		if(response.alert !== false && typeof response.alert !== "undefined"){
 			sendAlert(response.alert.title, response.alert.message, response.alert.type);
 		}
-		
+
 		if(response.error !== false && typeof response.error !== "undefined"){
 			if(response.error.field !== false){
 				response.error.field.forEach(function(index){
@@ -54,12 +56,12 @@ $(document).on('submit', '.form-ajax', function(e){
 				$(form).find(".form-message").html(response.error.message).hide().fadeIn();
 			}
 		}
-		
+
 		if(response.reset === true){
 			form.reset();
 		}
 
-	}); 
+	});
 });
 
 
@@ -137,7 +139,7 @@ function exchangeCurrency(sum){
 
 
 $(function(){
-	
+
 	function getToCartJSON(){
 		$.getJSON("?cmd=getToCartJSON", function(products){
 			$(".shopping-cart > ul").html("");
@@ -203,14 +205,14 @@ $(function(){
 		});
 	}
 	getToCartJSON();
-	
+
 	$("body").on("click", "a[href^='?cmd=addToCart']", function(e){
-		
+
 		e.preventDefault();
 		//e.stopPropagation();
-		
+
 		var a = this;
-		
+
 		if(($(a).parent("td").length == 0)){
 			var cart = $('.shopping-cart > span');
 			var fly_element = $(a).find("i");
@@ -236,14 +238,14 @@ $(function(){
 		}else{
 			addToCart();
 		}
-		
+
 		function addToCart(){
 			$.getJSON(a.href, function(data){
 				//if(data.count > 0 && $("a#pr_"+data.productID+"").length != 0){
 				//    $("a#pr_"+data.productID+"").attr("href", $("a#pr_"+data.productID+"").attr("href").replace("addToCart", "removeToCart"));
 					//$("a#pr_"+data.productID+"").find("i").removeClass("fa-star-o");
-					//$("a#pr_"+data.productID+"").find("i").addClass("fa-star").hide().fadeIn();  
-					//$("a#pr_"+data.productID+"").addClass("active").hide().fadeIn();       
+					//$("a#pr_"+data.productID+"").find("i").addClass("fa-star").hide().fadeIn();
+					//$("a#pr_"+data.productID+"").addClass("active").hide().fadeIn();
 				//}
 				getToCartJSON();
 			});
@@ -265,7 +267,7 @@ $(function(){
 		e.preventDefault();
 		e.stopPropagation();
 	});
-	
+
 });
 
 
@@ -301,7 +303,7 @@ $(function(){
 		$.get(this.href, function(data){
 			$(".modal-order").remove();
 			$("body").append(data);
-			$('.modal-order').modal('show'); 
+			$('.modal-order').modal('show');
 		});
 		e.preventDefault();
 	});
@@ -336,16 +338,16 @@ $(function(){
                 $(this).remove();
             });
          }
-        
-        
-        
-        
-        
+
+
+
+
+
 		$.post('?cmd=addToCart', {productID: $(this).attr('data-id')}, function(data) {
 			cart_refresh();
 		});
 	});
-	
+
 	$(document).on('click','.cart-del',function() {
 		$.post('?cmd=removeToCart', {productID: $(this).attr('data-id')}, function(data) {
 			cart_refresh();
@@ -355,7 +357,7 @@ $(function(){
 	$(document).on('click','.product-remove',function() {
 		$.post('?cmd=removeToCart', {productID: $(this).attr('data-id')}, function(data) {
 			location.reload();
-		
+
 		});
 	});
 
@@ -430,8 +432,9 @@ $(function(){
 				html +='		<div class="shop-text-all" style="min-height:100px;">';
 				html +='			<div class="title-color fix">';
 				html +='				<div class="shop-title f-left">';
+				let propertyName = 'title_' + lang;
 				html +='					<h3>';
-				html +='						<a href="/product/'+val.id+'" target="_blank">'+val.title_am+'</a>';
+				html +='						<a href="/product/'+val.id+'" target="_blank">'+val[propertyName]+'</a>';
 				html +='					</h3>';
 				html +='				</div>';
 				html +='				<span class="price f-right">';
@@ -500,7 +503,7 @@ function isJson(str) {
 /************ CART ************/
 
 $(function () {
-	
+
 
 
 })
