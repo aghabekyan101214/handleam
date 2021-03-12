@@ -25,7 +25,7 @@ spl_autoload_register(function ($class){
     if(is_file("classes/$class_path")){
         require "classes/$class_path";
     }elseif(is_file("drivers/$class_path")){
-        require "drivers/$class_path"; 
+        require "drivers/$class_path";
     }else{
         exit("Error loading: $class_name");
     }
@@ -72,7 +72,7 @@ if(!isset($_SESSION['currency'])){
 
 
 
-if(isset($url->DIR[0]) && $url->DIR[0] == 'admin'){ 
+if(isset($url->DIR[0]) && $url->DIR[0] == 'admin'){
     $cnt = new Admin();
     $cnt->currency = 'AMD';
     $cnt->currency_symbol = "֏";
@@ -106,7 +106,7 @@ if(isset($url->DIR[0]) && $url->DIR[0] == 'admin'){
         }else{
             require "layouts/".$url->PATH.".php";
         }
-    }else{       
+    }else{
         require "layouts/admin/login.php";
     }
 }else{

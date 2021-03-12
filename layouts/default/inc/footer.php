@@ -137,13 +137,26 @@
 <script src="/public/js/main.js?v=1.6"></script>
 <script src="/public/assets/js/classie.js"></script>
 <script src="/public/assets/js/main3.js"></script>
+<!--Start of Tawk.to Script-->
+<script type="text/javascript">
+    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    (function(){
+        var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+        s1.async=true;
+        s1.src='https://embed.tawk.to/60490e2b385de407571ec1da/1f0elums9';
+        s1.charset='UTF-8';
+        s1.setAttribute('crossorigin','*');
+        s0.parentNode.insertBefore(s1,s0);
+    })();
+</script>
+<!--End of Tawk.to Script-->
 <script>
     $(document).ready(function () {
         $(".loader_container").delay(1000).fadeOut(800);
     });
 </script>
 <script>
-    $(function(){ 
+    $(function(){
         $(window).on("scroll load resize", function (e){
             if($(window).scrollTop() >= $(".header-area").height()+100){
                 if($(".header-area").hasClass("stick")===false){
@@ -157,6 +170,6 @@
 </script>
 
 <!-- Chat - https://app.purechat.com/ -->
-<script type='text/javascript' data-cfasync='false'>window.purechatApi = { l: [], t: [], on: function () { this.l.push(arguments); } }; (function () { var done = false; var script = document.createElement('script'); script.async = true; script.type = 'text/javascript'; script.src = 'https://app.purechat.com/VisitorWidget/WidgetScript'; document.getElementsByTagName('HEAD').item(0).appendChild(script); script.onreadystatechange = script.onload = function (e) { if (!done && (!this.readyState || this.readyState == 'loaded' || this.readyState == 'complete')) { var w = new PCWidget({c: 'f513a8e4-7c91-4884-a9d7-85cab11ba377', f: true }); done = true; } }; })();</script>
+<!--<script type='text/javascript' data-cfasync='false'>window.purechatApi = { l: [], t: [], on: function () { this.l.push(arguments); } }; (function () { var done = false; var script = document.createElement('script'); script.async = true; script.type = 'text/javascript'; script.src = 'https://app.purechat.com/VisitorWidget/WidgetScript'; document.getElementsByTagName('HEAD').item(0).appendChild(script); script.onreadystatechange = script.onload = function (e) { if (!done && (!this.readyState || this.readyState == 'loaded' || this.readyState == 'complete')) { var w = new PCWidget({c: 'f513a8e4-7c91-4884-a9d7-85cab11ba377', f: true }); done = true; } }; })();</script>-->
 
 

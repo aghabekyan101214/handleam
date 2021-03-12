@@ -13,7 +13,7 @@
 		<section class="hero-slider-container">
 			<div class="hero-slider owl-carousel">
 				<?php foreach($cnt->getSlide() as $slide) {
-					$photo = $cnt->getPhoto("slide", $slide['id'], 1); ?>   
+					$photo = $cnt->getPhoto("slide", $slide['id'], 1); ?>
 				<div class="hero-slider-item hero-slider-item-3" style="background: url('/public/gallery/slide/<?=$photo['photoID']?>.jpg'); background-size: cover">
 					<div class="hero-slider-contents">
 						<div class="container">
@@ -65,7 +65,7 @@
 			</div>
 		</div>
 		<!-- banner style 2 end -->
-		
+
 		<!-- shop area start -->
 		<div class="home-product-area pt-50 pb-50">
 			<div class="container">
@@ -76,6 +76,7 @@
 					<div class="home-2-tab">
 						<ul role="tablist">
 							<?php $i=0; foreach($cnt->getCat() as $cat) { $i++; ?>
+                                <?php if (null !== $cat['parent_id']) continue; ?>
 							<li <?php if($i == 1) {?>class="active" <?php }?>>
 								<a href="#<?=$i?>" data-toggle="tab">
 								<?=$cat['title']?>
@@ -89,17 +90,17 @@
 						<div class="tab-pane <?php if($a == 1) {?>active<?php }?>" id="<?=$a?>">
 							<div class="row">
 								<div class="product-curosel product-curosel-style owl-carousel">
-									<?php 
+									<?php
 										$getGoods = $cnt->getGoods(["catID"=>$cat['id'], "limit"=>'8', "orderby_rand"=>true]);
                                         $goods = "";
 										foreach($getGoods as $goods) {
 											if($goods['discount'] > 0) {
-											    //$goods_prc = ($goods['price'] * $goods['discount'] /100); 
+											    //$goods_prc = ($goods['price'] * $goods['discount'] /100);
 												$goods_price = $goods['price']; //($goods['price'] - $goods_prc);
 											} else {
                                                 $goods_price = $goods['price'];
-                                            } 
-											$photo = $cnt->getPhoto("goods", $goods['id'], 1);?>                
+                                            }
+											$photo = $cnt->getPhoto("goods", $goods['id'], 1);?>
 									<div class="col-md-3 col-sm-6 col-xs-12">
 										<div class="single-shop">
 											<div class="shop-img">
@@ -162,9 +163,9 @@
 				</div>
 			</div>
 		</div>
-		
-		
-				
+
+
+
 		<!-- shop area start -->
 		<div class="home-product-area pt-50 pb-100">
 			<div class="container">
@@ -173,7 +174,7 @@
 				</div>
                 <div class="row">
                     <div class="product-curosel product-curosel-style owl-carousel">
-                        <?php 
+                        <?php
                             $getGoods = $cnt->getGoods(["discount_start"=>1, "limit"=>'8', "orderby_rand"=>true]);
                             $goods = "";
                             foreach($getGoods as $goods) {
@@ -181,9 +182,9 @@
                                 $goods_price = $goods['price'];
                             } else {
                                 $goods_price = $goods['price'];
-                            } 
+                            }
                             $photo = $cnt->getPhoto("goods", $goods['id'], 1);
-                        ?>                
+                        ?>
                         <div class="col-md-3 col-sm-6 col-xs-12">
                             <div class="single-shop">
                                 <div class="shop-img">
@@ -249,9 +250,9 @@
                 </div>
 			</div>
 		</div>
-		
-		
-		
+
+
+
 		<?php include "layouts/default/inc/footer.php"; ?>
 	</body>
 </html>

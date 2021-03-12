@@ -6,50 +6,68 @@
     <body data-ma-theme="indigo">
         <main class="main">
             <?php require "inc/header.php"?>
-            
+
             <?php require "inc/aside.php"?>
 
             <section class="content">
                 <div class="content__inner content__inner--sm" style="max-width:1100px;">
                     <div class="col-md-12">
-                      <br><h4>Ավելացնել կատեգորիա</h4><br>                         
+                      <br><h4>Ավելացնել կատեգորիա</h4><br>
                     </div>
                     <div class="card p-1">
                         <div class="card-header nav-bar p-3">
                             <form action="?cmd=addCat" method="post" style="width:100%;">
                                 <div class="row">
-                                    <div class="col-md-3">
+                                    <div class="col-md-2">
+                                        <select name="parent_category" id="" class="form-control">
+                                            <option value="">Ծնող Կատեգորիա</option>
+                                            <?php foreach($cnt->getCat() as $cat) {?>
+                                                <option value="<?php echo $cat['id']?>"><?php echo $cat['title_am']?></option>
+                                            <?php } ?>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2">
                                         <input type="text" name="title_am" placeholder="Վերնագիր AM" class="form-control" required>
-                                            <i class="form-group__bar"></i>
-                                        </div>
-                                       <div class="col-md-3">
+                                        <i class="form-group__bar"></i>
+                                    </div>
+                                   <div class="col-md-2">
                                         <input type="text" name="title_en" placeholder="Վերնագիր EN" class="form-control" required>
-                                            <i class="form-group__bar"></i>
-                                        </div>
-                                        <div class="col-md-3">
+                                        <i class="form-group__bar"></i>
+                                   </div>
+                                    <div class="col-md-2">
                                         <input type="text" name="title_ru" placeholder="Վերնագիր RU" class="form-control" required>
-                                            <i class="form-group__bar"></i>
-                                        </div>
-                                    <div class="col-md-3">
-                                            <button style="float:right; width:100%" type="submit" class="btn btn-success btn-block">Ավելացնել </button>
-                                    </div>       
+                                        <i class="form-group__bar"></i>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <button style="float:right; width:100%" type="submit" class="btn btn-success btn-block">Ավելացնել </button>
+                                    </div>
                                 </div>
                             </form>
                         </div>
-                    </div> 
+                    </div>
                     <?php foreach($cnt->getCat() as $cat) {?>
+
                         <div class="card" style="margin-top:-25px">
                             <div class="card-block p-1">
                                 <div class="row">
-                                     <div class="col-md-3">
+                                    <div class="col-md-2">
+                                        <select name="parent_category" data-live="cat, parent_id, id, <?php echo $cat['id']?>" class="form-control live">
+                                            <option value="">Ծնող Կատեգորիա</option>
+                                            <?php foreach($cnt->getCat() as $c) {?>
+                                                <?php if($c['id'] == $cat['id']) continue; ?>
+                                                <option <?php if($cat['parent_id'] == $c['id']) echo 'selected'; ?> value="<?php echo $c['id']?>"><?php echo $c['title_am']?></option>
+                                            <?php } ?>
+                                        </select>
+                                    </div>
+                                     <div class="col-md-2">
                                          <input type="text" name="title_am" placeholder="Վերնագիր AM" class="form-control live"  data-live="cat, title_am, id, <?php echo $cat['id']?>" value="<?php echo $cat['title_am']?>">
                                          <i class="form-group__bar"></i>
                                      </div>
-                                     <div class="col-md-3">
+                                     <div class="col-md-2">
                                          <input type="text" name="title_en" placeholder="Վերնագիր EN" class="form-control live"  data-live="cat, title_en, id, <?php echo $cat['id']?>" value="<?php echo $cat['title_en']?>">
                                          <i class="form-group__bar"></i>
                                      </div>
-                                        <div class="col-md-3">
+                                        <div class="col-md-2">
                                          <input type="text" name="title_ru" placeholder="Վերնագիր RU" class="form-control live"  data-live="cat, title_ru, id, <?php echo $cat['id']?>" value="<?php echo $cat['title_ru']?>">
                                          <i class="form-group__bar"></i>
                                      </div>
@@ -60,13 +78,13 @@
                             </div>
                         </div>
                     <?php }?>
-                    
-                    
+
+
                     <div class="col-md-12">
                        <br>
-                       <h4>Ավելացնել տեսակ</h4> 
-                       <br>   
-                    </div>   
+                       <h4>Ավելացնել տեսակ</h4>
+                       <br>
+                    </div>
             <div class="card p-1">
                         <div class="card-header nav-bar p-3">
                             <form action="?cmd=addGoodsType" method="post" style="width:100%;">
@@ -79,7 +97,7 @@
                                             <?php }?>
                                         </select>
                                             <i class="form-group__bar"></i>
-                                        </div>    
+                                        </div>
                                         <div class="col-md-3">
                                         <input type="text" name="title_am" placeholder="Վերնագիր AM" class="form-control" required>
                                             <i class="form-group__bar"></i>
@@ -94,11 +112,11 @@
                                         </div>
                                     <div class="col-md-1">
                                             <button style="float:right; width:100%" type="submit" class="btn btn-success btn-block"> &radic;</button>
-                                    </div>       
+                                    </div>
                                 </div>
                             </form>
                         </div>
-                    </div> 
+                    </div>
                     <?php foreach($cnt->getGoodsType() as $goodsType) {?>
                         <div class="card" style="margin-top:-25px">
                             <div class="card-block p-1">
@@ -128,7 +146,7 @@
                                 </div>
                             </div>
                         </div>
-                    <?php }?>                
+                    <?php }?>
                     <div class="p-1"></div>
                 </div>
                 <?php require "inc/footer.php"?>

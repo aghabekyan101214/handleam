@@ -73,12 +73,14 @@
                         <div class="main-menu f-right">
                             <nav>
                                 <ul>
-                                    <li><a href="/"><?=$cnt->val['home']?></a></li>
                                     <li><a href="/shop"><?=$cnt->val['shop']?></a></li>
                                     <li><a href="/sell-out"><?=$cnt->val['liquidation_prices']?></a></li>
                                     <li><a href="/about"><?=$cnt->val['about']?></a></li>
                                     <!--<li><a href="/blog"><?=$cnt->val['blog']?></a></li>-->
                                     <li><a href="/contact"><?=$cnt->val['contact']?></a></li>
+                                    <?php foreach($cnt->getBanner(["type"=>'large']) as $banner_l) {  ?>
+                                        <li><a href="<?=$banner_l['link']?>"><?=$banner_l['title']?></a></li>
+                                    <?php } ?>
                                 </ul>
                             </nav>
                         </div>

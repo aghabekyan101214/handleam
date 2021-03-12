@@ -1,15 +1,15 @@
-<?php 
+<?php
 class Admin extends Model{
-    
+
     public $user_cnt;
-    
+
     public function __construct(){
         parent::__construct();
         $this->user_cnt = new User();
     }
-    
+
     // Sign
-    
+
     public function login(){
         if(empty($_POST['login']) || empty($_POST['password'])){
             unset($_SESSION['admin']);
@@ -39,41 +39,43 @@ class Admin extends Model{
             return false;
         }
     }
-    
+
     public function logOut(){
         unset($_SESSION['admin']);
     }
 
     public function addCat(){
-        $this->db->query("INSERT INTO `cat`(`title_am`, `title_en`,`title_ru` )VALUES('".$_POST['title_am']."','".$_POST['title_en']."','".$_POST['title_ru']."')");
+        $parent_id = !empty($_POST['parent_category']) ? $_POST['parent_category'] : "NULL";
+        if($parent_id != "NULL") $parent_id = intval($parent_id);
+        $this->db->query("INSERT INTO `cat`(`title_am`, `title_en`,`title_ru`, `parent_id` )VALUES('".$_POST['title_am']."','".$_POST['title_en']."','".$_POST['title_ru']."', ".$parent_id.")");
     }
-    
+
     public function addGoodsType(){
         $this->db->query("INSERT INTO `goods_type`(`catID`, `title_am`, `title_en`,`title_ru` )VALUES('".$_POST['catID']."', '".$_POST['title_am']."','".$_POST['title_en']."','".$_POST['title_ru']."')");
     }
-    
+
     public function addGoods (){
         $this->db->query("INSERT INTO `goods`(`title_am`, `title_en`, `title_ru`, `meta_am`, `meta_en`, `meta_ru`, `catID`, `typeID`, `descr_am`, `descr_en`, `descr_ru`, `discount`, `price`, `type`, `status`) VALUES ('', '', '', '', '', '', '".$_POST['catID']."', '".$_POST['goodsTypeID']."', '', '', '', '0', '0', '', '0')");
         $id = $this->db->insert_id;
         header("Location: /admin/edit?id=$id");
         exit;
     }
-    
-    
+
+
     public function addSlide (){
         $this->db->query("INSERT INTO `slide`(`title_am`, `title_en`, `title_ru`, `descr_am`, `descr_en`, `descr_ru`, `btn_am`, `btn_en`, `btn_ru`, `link`)VALUES('".$_POST['title_am']."','".$_POST['title_en']."', '".$_POST['title_ru']."', '".$_POST['descr_am']."', '".$_POST['descr_en']."' , '".$_POST['descr_ru']."', '".$_POST['btn_am']."', '".$_POST['btn_en']."' , '".$_POST['btn_ru']."', '".$_POST['link']."')");
     }
-    
+
     public function addBlog (){
            $date = date('d-m-Y');
         $this->db->query("INSERT INTO `blog`(`title_am`, `title_en`, `title_ru`, `descr_am`, `descr_en`, `descr_ru`, `date`, `view`)VALUES('".$_POST['title_am']."','".$_POST['title_en']."', '".$_POST['title_ru']."', '', '' , '', '$date', '0')");
     }
-    
-    
+
+
     public function addBanner(){
         $this->db->query("INSERT INTO `banner`(`title_am`, `title_en`, `title_ru`, `link`, `type`)VALUES('".@$_POST['title_am']."','".@$_POST['title_en']."', '".@$_POST['title_ru']."',  '".@$_POST['link']."',  '".@$_POST['type']."')");
     }
- 
+
     public function removeBanner () {
         foreach($this->getPhoto("banner", $_POST['id']) as $photo){
             $_POST['cat'] = $photo["group"];
@@ -82,29 +84,29 @@ class Admin extends Model{
         }
         $this->db->query("DELETE FROM `banner` WHERE `id`='".$_POST['id']."'");
     }
-    
+
     // Remove
     public function removeCat () {
         $this->db->query("DELETE FROM `cat` WHERE `id`='".$_POST['id']."'");
-    }  
-    
+    }
+
      public function removeBlog () {
         $this->db->query("DELETE FROM `blog` WHERE `id`='".$_POST['id']."'");
-    }  
-    
+    }
+
     public function removeType () {
         $this->db->query("DELETE FROM `goods_type` WHERE `id`='".$_POST['id']."'");
     }
-    
+
     public function removeSlide () {
         $this->db->query("DELETE FROM `slide` WHERE `id`='".$_POST['id']."'");
     }
-   
-    
+
+
     public function removeGoods () {
         $this->db->query("DELETE FROM `goods` WHERE `id`='".$_POST['id']."'");
     }
-    
+
     public function changeField(){
         if(!empty($_POST['table_name']) && !empty($_POST['field_name']) && !empty($_POST['id_name']) && !empty($_POST['id_value'])){
             $table_name = ltrim($_POST['table_name']);
@@ -112,33 +114,38 @@ class Admin extends Model{
             $field_value = ltrim($_POST['field_value']);
             $id_name = ltrim($_POST['id_name']);
             $id_value = ltrim($_POST['id_value']);
-
-            $this->db->query("UPDATE `$table_name` SET `$field_name`='$field_value' WHERE `$id_name`='$id_value'");
+            if($field_name == 'parent_id') {
+                $field_value = !empty($field_value) ? $field_value : "NULL";
+                if($field_value != "NULL") $field_value = intval($field_value);
+                $this->db->query("UPDATE `$table_name` SET `$field_name`=".$field_value." WHERE `$id_name`='$id_value'");
+            } else {
+                $this->db->query("UPDATE `$table_name` SET `$field_name`='$field_value' WHERE `$id_name`='$id_value'");
+            }
         }
     }
-    
-    public function imageUpload(){  
+
+    public function imageUpload(){
         $dir = 'public/gallery/pages/';
         $filename = $_FILES['file']['name'];
         $path = $dir.$filename;
         $link = '/public/gallery/pages/'.$filename;
         $_FILES['file']['type'] = strtolower($_FILES['file']['type']);
-        if ($_FILES['file']['type'] == 'image/png' 
-        || $_FILES['file']['type'] == 'image/jpg' 
-        || $_FILES['file']['type'] == 'image/gif' 
-        || $_FILES['file']['type'] == 'image/jpeg'){	
+        if ($_FILES['file']['type'] == 'image/png'
+        || $_FILES['file']['type'] == 'image/jpg'
+        || $_FILES['file']['type'] == 'image/gif'
+        || $_FILES['file']['type'] == 'image/jpeg'){
             copy($_FILES['file']['tmp_name'], $path);
             //echo stripslashes(json_encode(array('filelink' => $link)));
             exit;
         }
     }
-    
+
     public function imageGetJson(){
 
     }
 
     // Photo
-    
+
     public function addPhoto(){
         $group = $_POST['cat'];
             if($_POST['act']=='change'){
@@ -189,11 +196,11 @@ class Admin extends Model{
                 }
             }
     }
-    
+
     public function removePhoto(){
         $group = $_POST['cat'];
         $this->db->query("DELETE FROM `photo` WHERE `photoID`='".$_POST['photoID']."'");
-        
+
         if(is_file("public/gallery/$group/".$_POST['photoID'].".jpg")){
             unlink("public/gallery/$group/".$_POST['photoID'].".jpg");
         }elseif(is_file("public/gallery/$group/".$_POST['photoID'].".gif")){
