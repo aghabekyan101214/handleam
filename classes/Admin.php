@@ -47,7 +47,8 @@ class Admin extends Model{
     public function addCat(){
         $parent_id = !empty($_POST['parent_category']) ? $_POST['parent_category'] : "NULL";
         if($parent_id != "NULL") $parent_id = intval($parent_id);
-        $this->db->query("INSERT INTO `cat`(`title_am`, `title_en`,`title_ru`, `parent_id` )VALUES('".$_POST['title_am']."','".$_POST['title_en']."','".$_POST['title_ru']."', ".$parent_id.")");
+        $show_in_menu = !empty($_POST['show_in_menu']) ? intval($_POST['show_in_menu']) : 0;
+        $this->db->query("INSERT INTO `cat`(`title_am`, `title_en`,`title_ru`, `parent_id`, `show_in_menu` )VALUES('".$_POST['title_am']."','".$_POST['title_en']."','".$_POST['title_ru']."', ".$parent_id.", ".$show_in_menu.")");
     }
 
     public function addGoodsType(){
@@ -119,6 +120,7 @@ class Admin extends Model{
                 if($field_value != "NULL") $field_value = intval($field_value);
                 $this->db->query("UPDATE `$table_name` SET `$field_name`=".$field_value." WHERE `$id_name`='$id_value'");
             } else {
+                if($field_name == 'show_in_menu') $field_value = intval($field_value);
                 $this->db->query("UPDATE `$table_name` SET `$field_name`='$field_value' WHERE `$id_name`='$id_value'");
             }
         }

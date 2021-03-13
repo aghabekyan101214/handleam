@@ -63,6 +63,7 @@
                             </div>
                         </div> -->
                         <?php $cart_data = $cnt->getToCart(); ?>
+                        <?php $categories = $cnt->getCat(); ?>
                         <div class="shopping-cart f-right">
                             <a class="top-cart" href="/cart"><i class="pe-7s-cart"></i></a>
                             <span class="cart_count"><?=((isset($cart_data['count'])) ? $cart_data['count'] : "0");?></span>
@@ -74,31 +75,24 @@
                             <nav>
                                 <ul>
                                     <li><a href="/shop"><?=$cnt->val['shop']?></a></li>
-                                    <!--<li><a href="/"><?/*=$cnt->val['home']*/?></a></li>-->
-                                    <li>
-                                        <a href="/shakhmat/chess"><?=$cnt->val['chess']?></a>
-                                        <ul class="dropdown" style="width:250px;">
-                                            <li><a href="#"><?=$cnt->val['author_chess']?></a></li>
-                                            <li><a href="#"><?=$cnt->val['table_chess']?></a></li>
-                                            <li><a href="#"><?=$cnt->val['stone_chess']?></a></li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <a href="/"><?=$cnt->val['nardi']?></a>
-                                        <ul class="dropdown" style="width:250px;">
-                                            <li><a href="#"><?=$cnt->val['author_backgammons']?></a></li>
-                                            <li><a href="#"><?=$cnt->val['stone_backgammons']?></a></li>
-                                            <li><a href="/"><?=$cnt->val['individual_orders']?></a></li>
-                                        </ul>
-                                    </li>
+                                    <?php foreach($categories as $cat) { if (!$cat['show_in_menu']) continue; ?>
+                                        <li>
+                                            <a href="#"><?php echo $cat['title_'.$_SESSION['lang']]?></a>
+                                            <?php $has_children = array_search($cat['id'], array_column($categories, 'parent_id'));?>
+                                            <?php if($has_children !== false) {?>
+                                                <ul class="dropdown" style="width:250px;">
+                                                    <?php foreach($categories as $c) { if($c['parent_id'] != $cat['id']) continue; ?>
+                                                        <li><a href="#"><?php echo $c['title_'.$_SESSION['lang']]; ?></a></li>
+                                                    <?php }?>
+                                                </ul>
+                                            <?php } ?>
+                                        </li>
+                                    <?php }?>
                                     <li><a href="/shop"><?=$cnt->val['whole_range']?></a></li>
                                     <li><a href="/sell-out"><?=$cnt->val['liquidation_prices']?></a></li>
                                     <li><a href="/about"><?=$cnt->val['about']?></a></li>
                                     <!--<li><a href="/blog"><?=$cnt->val['blog']?></a></li>-->
                                     <li><a href="/contact"><?=$cnt->val['contact']?></a></li>
-                                    <?php foreach($cnt->getBanner(["type"=>'large']) as $banner_l) {  ?>
-                                        <li><a href="<?=$banner_l['link']?>"><?=$banner_l['title']?></a></li>
-                                    <?php } ?>
                                 </ul>
                             </nav>
                         </div>

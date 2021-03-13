@@ -39,6 +39,10 @@
                                         <i class="form-group__bar"></i>
                                     </div>
                                     <div class="col-md-2">
+                                        <label for="show_in_menu">ՄԵնյու</label>
+                                        <input style="appearance: auto; height: 25px; width: 25px" type="checkbox" id="show_in_menu" name="show_in_menu" value="1" placeholder="Մենյու" class="form-control">
+                                    </div>
+                                    <div class="col-md-2">
                                         <button style="float:right; width:100%" type="submit" class="btn btn-success btn-block">Ավելացնել </button>
                                     </div>
                                 </div>
@@ -67,10 +71,14 @@
                                          <input type="text" name="title_en" placeholder="Վերնագիր EN" class="form-control live"  data-live="cat, title_en, id, <?php echo $cat['id']?>" value="<?php echo $cat['title_en']?>">
                                          <i class="form-group__bar"></i>
                                      </div>
-                                        <div class="col-md-2">
+                                     <div class="col-md-2">
                                          <input type="text" name="title_ru" placeholder="Վերնագիր RU" class="form-control live"  data-live="cat, title_ru, id, <?php echo $cat['id']?>" value="<?php echo $cat['title_ru']?>">
                                          <i class="form-group__bar"></i>
                                      </div>
+                                    <div class="col-md-2">
+                                        <label for="show_in_menu">ՄԵնյու</label>
+                                        <input style="appearance: auto; height: 25px; width: 25px" type="checkbox" data-live="cat, show_in_menu, id, <?php echo $cat['id']?>" id="show_in_menu" name="show_in_menu" value="1" <?php if($cat['show_in_menu']) echo 'checked'; ?> placeholder="Մենյու" class="form-control live">
+                                    </div>
                                      <div class="col-md-1">
                                          <button style="float:right;width:100%" type="submit" class="btn btn-danger btn-block" onClick="removeCat(<?php echo $cat['id']?>)">x</button>
                                      </div>
