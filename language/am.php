@@ -52,7 +52,15 @@ return [
     "not_stock" => "Պատվերով",
     "status_new" => "Նորույթ",
     "liquidation_prices" => "Զեղչված տեսականի",
-    
     "from" => "Սկսած",
     "to" => "Մինչև",
+    "individual_orders" => "Անհատական Պատվերներ",
+    "chesses" => "Շախմատներ",
+    "author_chess" => "Հեղինակային Շախմատ",
+    "table_chess" => "Սեղան Շախմատ",
+    "stone_chess" => "Քարից Շախմատ",
+    "backgammons" => "Նարդիներ",
+    "author_backgammons" => "Հեղինակային Նարդի",
+    "stone_backgammons" => "Սեղան Նարդի",
+    "whole_range" => "Ամբողջ տեսականի",
 ];

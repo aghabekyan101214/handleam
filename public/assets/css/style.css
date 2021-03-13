@@ -201,7 +201,7 @@ label {
     height: 80px;
 }
 a.top-cart {
-    color: #333;
+    color: #fff;
     display: block;
     font-size: 22px;
     position: relative;
@@ -211,11 +211,14 @@ a.top-cart > i {
     display: block;
     line-height: inherit;
 }
+.header-area.stick a.top-cart {
+    color: #333;
+}
 .shopping-cart > span {
     position: absolute;
     top: 23px;
-    background-color: #333;
-    color: #fff;
+    background-color: #fff;
+    color: #333;
     font-size: 10px;
     width: 20px;
     height: 20px;
@@ -225,6 +228,10 @@ a.top-cart > i {
     right: 10px;
     font-weight: 600;
     transition: all 0.3s ease-out 0s;
+}
+.header-area.stick .shopping-cart > span {
+    background-color: #333;
+    color: #fff;
 }
 
 .shopping-cart ul li {
@@ -337,16 +344,20 @@ a.top-cart > i {
 .main-menu nav > ul > li {
     display: inline-block;
     position: relative;
+    line-height: normal;
 }
 .main-menu nav > ul > li > a {
-    color: #333;
+    color: #fff;
     display: block;
     line-height: 35px;
-    padding: 30px 17px;
+    padding: 30px 10px;
     text-transform: uppercase;
 }
-.main-menu nav > ul > li:hover > a {
-    color: #666;
+.header-area.stick .main-menu nav > ul > li > a {
+    color: #333;
+}
+.main-menu nav > ul > li .dropdown li:not(:last-of-type) {
+    margin-bottom: 8px;
 }
 .dropdown {
     background: #ffffff none repeat scroll 0 0;
@@ -1753,6 +1764,13 @@ a.dec.qtybutton {
 .header-area.stick.header-style-3 .icon-search-2 {
     color: #333;
 }
+.header-area {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 19;
+}
 .header-area.stick {
     background-color: #fff;
     position: fixed;
@@ -1760,7 +1778,7 @@ a.dec.qtybutton {
     left: 0;
     right: 0;
     box-shadow: 0 4px 12px rgba(50, 50, 50, 0.05);
-    z-index: 999;
+    z-index: 1040;
 }
 
 .logo a img.logo-block {
@@ -1787,26 +1805,40 @@ a.dec.qtybutton {
 .social-icons a i{
     font-size: 25px;
     line-height: 35px;
-    padding: 30px 17px;
+    padding: 30px 5px;
     transition: .2s;
 }
 
 .fb{
-    color: #0d2b75;
+    color: #fff;
     transition: .2s;
 }
-
-.fb:hover{
+.fb:hover {
+    color: #fff;
+    opacity: .7;
+}
+.header-area.stick .fb {
+    color: #0d2b75;
+}
+.header-area.stick .fb:hover {
     color: #091b4a;
+    opacity: 1;
 }
 
 .instagram{
-    color: #da4144;
+    color: #fff;
     transition: .2s;
 }
-
 .instagram:hover{
+    color: #fff;
+    opacity: .7;
+}
+.header-area.stick .instagram{
+    color: #da4144;
+}
+.header-area.stick .instagram:hover{
     color: #972d2e;
+    opacity: 1;
 }
 
 .terms-title{
@@ -3741,7 +3773,7 @@ a#scrollUp:hover {
     text-decoration: none;
     top: 50%;
     width: 50px;
-    z-index: 9999;
+    z-index: 999;
     -webkit-transition: all .4s ease;
     transition: all .4s ease;
 }

@@ -53,7 +53,15 @@ return [
     "not_stock" => "Тo order",
     "status_new" => "New",
     "liquidation_prices" => "Discounted Products",
-    
     "from" => "From",
     "to" => "To",
+    "individual_orders" => "Individual Orders",
+    "chesses" => "Chesses",
+    "author_chess" => "Chesses",
+    "table_chess" => "Chesses",
+    "stone_chess" => "Chesses",
+    "backgammons" => "Backgammons",
+    "author_backgammons" => "Backgammons",
+    "stone_backgammons" => "Backgammons",
+    "whole_range" => "Whole Range",
 ];
