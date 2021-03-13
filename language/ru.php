@@ -56,7 +56,15 @@ return [
     "not_stock" => "На заказ",
     "status_new" => "Новинка",
     "liquidation_prices" => "Товары со скидкой",
-    
     "from" => "От",
     "to" => "До",
+    "individual_orders" => "Индивидуальные заказы",
+    "chesses" => "Шахматы",
+    "author_chess" => "Шахматы",
+    "table_chess" => "Шахматы",
+    "stone_chess" => "Шахматы",
+    "backgammons" => "Нарды",
+    "author_backgammons" => "Нарды",
+    "stone_backgammons" => "Нарды",
+    "whole_range" => "Весь Ассортимент",
 ];

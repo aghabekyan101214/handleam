@@ -18,20 +18,20 @@
     <div class="header-bottom">
         <div class="container">
             <div class="row">
-                <div class="col-md-2 col-sm-3 col-xs-4">
+                <div class="col-md-2 col-sm-4 col-xs-5 header_logo_block">
                     <div class="logo">
                         <a href="/">
                             <img src="/public/assets/img/logo/logo-black.png" alt="">
                         </a>
                     </div>
                 </div>
-                <div class="col-md-2 col-sm-3 col-xs-4">
+                <div class="col-md-1 col-sm-4 col-xs-3 header_social_block">
                     <div class="social-icons text-center">
                         <a class="fb" target="_blank" href="<?=$cnt->getContacts()['fb']?>"><i class="fa fa-facebook"></i></a>
                         <a class="instagram" target="_blank" href="<?=$cnt->getContacts()['instagram']?>"><i class="fa fa-instagram"></i></a>
                     </div>
                 </div>
-                <div class="col-md-8 col-sm-9 col-xs-4">
+                <div class="col-md-9 col-sm-4 col-xs-4 header_basket_block">
                     <div class="cart-menu">
                         <div class="main-menu lang" style="float: right;">
                             <nav>
@@ -74,6 +74,24 @@
                             <nav>
                                 <ul>
                                     <li><a href="/shop"><?=$cnt->val['shop']?></a></li>
+                                    <!--<li><a href="/"><?/*=$cnt->val['home']*/?></a></li>-->
+                                    <li>
+                                        <a href="/shakhmat/chess"><?=$cnt->val['chess']?></a>
+                                        <ul class="dropdown" style="width:250px;">
+                                            <li><a href="#"><?=$cnt->val['author_chess']?></a></li>
+                                            <li><a href="#"><?=$cnt->val['table_chess']?></a></li>
+                                            <li><a href="#"><?=$cnt->val['stone_chess']?></a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="/"><?=$cnt->val['nardi']?></a>
+                                        <ul class="dropdown" style="width:250px;">
+                                            <li><a href="#"><?=$cnt->val['author_backgammons']?></a></li>
+                                            <li><a href="#"><?=$cnt->val['stone_backgammons']?></a></li>
+                                            <li><a href="/"><?=$cnt->val['individual_orders']?></a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="/shop"><?=$cnt->val['whole_range']?></a></li>
                                     <li><a href="/sell-out"><?=$cnt->val['liquidation_prices']?></a></li>
                                     <li><a href="/about"><?=$cnt->val['about']?></a></li>
                                     <!--<li><a href="/blog"><?=$cnt->val['blog']?></a></li>-->
@@ -99,8 +117,25 @@
                 <div class="mobile-menu">
                     <nav id="dropdown">
                         <ul>
-                            <li><a href="/"><?=$cnt->val['home']?></a></li>
-                            <li><a href="/shop"><?=$cnt->val['shop']?></a></li>
+                            <!--<li><a href="/"><?/*=$cnt->val['home']*/?></a></li>-->
+                            <li>
+                                <a href="/shakhmat/chess"><?=$cnt->val['chess']?></a>
+                                <ul class="dropdown" style="width:250px;">
+                                    <li><a href="#"><?=$cnt->val['author_chess']?></a></li>
+                                    <li><a href="#"><?=$cnt->val['table_chess']?></a></li>
+                                    <li><a href="#"><?=$cnt->val['stone_chess']?></a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="/"><?=$cnt->val['nardi']?></a>
+                                <ul class="dropdown" style="width:250px;">
+                                    <li><a href="#"><?=$cnt->val['author_backgammons']?></a></li>
+                                    <li><a href="#"><?=$cnt->val['stone_backgammons']?></a></li>
+                                    <li><a href="/"><?=$cnt->val['individual_orders']?></a></li>
+                                </ul>
+                            </li>
+                            <li><a href="/shop"><?=$cnt->val['whole_range']?></a></li>
+                            <!--<li><a href="/shop"><?/*=$cnt->val['shop']*/?></a></li>-->
                             <li><a href="/sell-out"><?=$cnt->val['liquidation_prices']?></a></li>
                             <li><a href="/about"><?=$cnt->val['about']?></a></li>
                             <li><a href="/blog"><?=$cnt->val['blog']?></a></li>
