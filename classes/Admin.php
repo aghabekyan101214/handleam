@@ -48,7 +48,10 @@ class Admin extends Model{
         $parent_id = !empty($_POST['parent_category']) ? $_POST['parent_category'] : "NULL";
         if($parent_id != "NULL") $parent_id = intval($parent_id);
         $show_in_menu = !empty($_POST['show_in_menu']) ? intval($_POST['show_in_menu']) : 0;
-        $this->db->query("INSERT INTO `cat`(`title_am`, `title_en`,`title_ru`, `parent_id`, `show_in_menu` )VALUES('".$_POST['title_am']."','".$_POST['title_en']."','".$_POST['title_ru']."', ".$parent_id.", ".$show_in_menu.")");
+        $is_individual_order = !empty($_POST['is_individual_order']) ? intval($_POST['is_individual_order']) : 0;
+        $this->db->query("INSERT INTO `cat`(`title_am`, `title_en`,`title_ru`, `parent_id`, `show_in_menu`, `is_individual_order` )VALUES('".$_POST['title_am']."','".$_POST['title_en']."','".$_POST['title_ru']."', ".$parent_id.", ".$show_in_menu.", ".$is_individual_order.")");
+        header("Location: " . $_SERVER['HTTP_REFERER']);
+        exit;
     }
 
     public function addGoodsType(){
@@ -121,6 +124,7 @@ class Admin extends Model{
                 $this->db->query("UPDATE `$table_name` SET `$field_name`=".$field_value." WHERE `$id_name`='$id_value'");
             } else {
                 if($field_name == 'show_in_menu') $field_value = intval($field_value);
+                if($field_name == 'is_separate_page') $field_value = intval($field_value);
                 $this->db->query("UPDATE `$table_name` SET `$field_name`='$field_value' WHERE `$id_name`='$id_value'");
             }
         }
