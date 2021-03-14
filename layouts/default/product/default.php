@@ -50,7 +50,7 @@ $goods_price = $goods['price'];
                             <div class="d-table">
                                 <div class="d-tablecell">
                                     <div class="row">
-                                        <div class="col-xs-12 col-sm-5">
+                                        <div class="col-xs-12 col-sm-7">
                                             <div class="quick-image">
                                                 <div class="single-quick-image tab-content text-center" style="border:1px solid #eee;margin-bottom:10px;">
                                                    <?php $i=0; foreach($cnt->getPhoto("goods", $goods['id']) as $photos) { $i++; ?>
@@ -74,7 +74,7 @@ $goods_price = $goods['price'];
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-xs-12 col-sm-7">
+                                        <div class="col-xs-12 col-sm-5">
                                             <div class="quick-right">
                                                 <div class="quick-right-text">
                                                     <h3><strong><?=$goods['title']?></strong></h3>

@@ -1387,6 +1387,13 @@ color: #333;
     color: #666;
     margin-left: 30px;
 }
+.quick-view .container {
+    width: 100%;
+    max-width: 1400px;
+}
+.quick-view .container .modal-dialog {
+    margin: 30px auto;
+}
 .quick-view .amount,
 .quick-view p {
     border-bottom: 1px solid #ccc;

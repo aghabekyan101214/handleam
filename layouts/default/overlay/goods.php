@@ -8,9 +8,9 @@ $goods_price = $goods['price'];
 <!-- quick view start -->
 
 
-<link rel="stylesheet" href="/public/lib/cloudzoom/cloudzoom.css">
-<script src="/public/lib/cloudzoom/cloudzoom.js"></script>
-<script>
+<!--<link rel="stylesheet" href="/public/lib/cloudzoom/cloudzoom.css">-->
+<!--<script src="/public/lib/cloudzoom/cloudzoom.js"></script>-->
+<!--<script>
 if($(window).width() >= 780){
     CloudZoom.quickStart();
 
@@ -23,7 +23,7 @@ if($(window).width() >= 780){
         });
     });
 }
-</script>
+</script>-->
 
 
 <div class="quick-view modal fade in" id="quick-view">
@@ -39,12 +39,12 @@ if($(window).width() >= 780){
                                         <span>x</span>
                                     </div>
                                     <div class="row">
-                                        <div class="col-xs-12 col-sm-5">
+                                        <div class="col-xs-12 col-sm-7">
                                             <div class="quick-image">
                                                 <div class="single-quick-image tab-content text-center">
                                                    <?php $i=0; foreach($cnt->getPhoto("goods", $goods['id']) as $photos) { $i++; ?>
                                                     <div class="tab-pane  fade in <?php if($i == 1) { echo 'active'; }?>" id="sin-pro-<?=$i?>">
-                                                        <img class="cloudzoom" src="/public/gallery/<?= $photos['group']?>/large/<?= $photos['photoID'] ?>.jpg" alt=""  data-cloudzoom="zoomImage:'/public/gallery/<?= $photos['group']?>/large/<?= $photos['photoID'] ?>.jpg'"/>
+                                                        <img src="/public/gallery/<?= $photos['group']?>/large/<?= $photos['photoID'] ?>.jpg" alt=""  />
                                                     </div>
                                                     <?php }?>
                                                 </div>
@@ -63,7 +63,7 @@ if($(window).width() >= 780){
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-xs-12 col-sm-7">
+                                        <div class="col-xs-12 col-sm-5">
                                             <div class="quick-right">
                                                 <div class="quick-right-text">
                                                     <h3><strong><a href="/product/<?=$goods['id']?>" target="_blank"><?=$goods['title']?></a></strong></h3>
