@@ -7,14 +7,13 @@
     .ptb-350 {
       padding: 200px 0;
     }
-    
-    
-    
-    
-    
+}
+@media (max-width: 1199px) {
+    .quick-view .container .main-view {
+        padding: 30px;
+    }
 }
 /* Normal desktop :992px. */
-
 @media (min-width: 992px) and (max-width: 1199px) {
     .main-menu nav > ul > li > a {
         padding: 25px 13px;
@@ -100,10 +99,7 @@
     .sidebar-text > h2 {
         font-size: 22px;
         margin-bottom: 4px;
-    }    
-    
-    
-    
+    }
 }
 @media (max-width: 991px) {
     .por-dse {
@@ -623,6 +619,18 @@
     }
     .main-menu.lang .dropdown {
         left: -20px;
+    }
+    .quick-view .container .main-view {
+        padding: 15px;
+    }
+    .quick-right-text h3 {
+        font-size: 21px;
+    }
+    .quick-view .amount > h4 {
+        font-size: 20px;
+    }
+    .quick-view .nav.nav-tabs img {
+        width: 75px;
     }
 }
 
