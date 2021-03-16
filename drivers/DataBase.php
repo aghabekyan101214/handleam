@@ -37,6 +37,7 @@ class DataBase{
 
    public function query($query = ""){
        $result = $this->mysqli->query($query);
+//       var_dump($this->mysqli->error);die;
        if(isset($this->mysqli->insert_id)){
             $this->insert_id = $this->mysqli->insert_id;
        }

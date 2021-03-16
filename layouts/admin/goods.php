@@ -13,7 +13,7 @@
     <?php require "inc/header.php" ?>
 
     <?php require "inc/aside.php" ?>
-    <?php $categories = $cnt->getCat( isset($_GET['page_type']) ? ['page_type' => $_GET['page_type'], 'page_type_value' => 1] : ['page_type' => 'is_individual_order', 'page_type_value' => 0]); ?>
+    <?php $categories = $cnt->getCat(['page_type' => ($_GET['page_type'] ?? 0)]); ?>
     <?php $goods = $cnt->getGoods(['filter_in_categories' => array_column($categories, 'id')]); ?>
 
     <section class="content">
@@ -27,15 +27,15 @@
                         <li class="<?php if(!isset($_GET['page_type'])) echo 'navigation__active'; ?>">
                             <a href="/admin/goods">Հիմնական</a>
                         </li>
-                        <li class="<?php if(isset($_GET['page_type']) && $_GET['page_type'] == 'is_individual_order') echo 'navigation__active'; ?>">
-                            <a href="/admin/goods?page_type=is_individual_order">Անհատական Պատվերներ</a>
+                        <li class="<?php if(isset($_GET['page_type']) && $_GET['page_type'] == '1') echo 'navigation__active'; ?>">
+                            <a href="/admin/goods?page_type=1">Անհատական Պատվերներ</a>
                         </li>
                     </ul>
                 </div>
             </div>
             <div class="card p-1">
                 <div class="card-header nav-bar p-3">
-                    <form action="?cmd=addGoods<?php if (isset($_GET['page_type']) && $_GET['page_type'] == 'is_individual_order') echo '&page_type='.$_GET['page_type']; ?>" method="post" style="width:100%;">
+                    <form action="?cmd=addGoods" method="post" style="width:100%;">
                         <div class="row">
                             <div class="col-md-5">
                                 <label>Ընտրեք բաժինը</label>

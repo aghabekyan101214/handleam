@@ -13,7 +13,7 @@
             <?php require "inc/header.php"?>
 
             <?php require "inc/aside.php"?>
-            <?php $categories = $cnt->getCat(['page_type' => $_GET['page_type'] ?? 0]); ?>
+            <?php $categories = $cnt->getCat(['page_type' => ($_GET['page_type'] ?? 0)]); ?>
             <?php $goodsTypes = $cnt->getGoodsType(['filter_in_categories' => array_column($categories, 'id')]); ?>
             <section class="content">
                 <div class="content__inner content__inner--sm" style="max-width:1100px;">
@@ -27,7 +27,7 @@
                                     <a href="/admin/cat">Հիմնական</a>
                                 </li>
                                 <li class="<?php if(isset($_GET['page_type']) && $_GET['page_type'] == '1') echo 'navigation__active'; ?>">
-                                    <a href="/admin/cat?page_type=is_individual_order">Անհատական Պատվերներ</a>
+                                    <a href="/admin/cat?page_type=1">Անհատական Պատվերներ</a>
                                 </li>
                             </ul>
                         </div>
@@ -61,7 +61,7 @@
                                         <input style="appearance: auto; height: 25px; width: 25px" type="checkbox" id="show_in_menu" name="show_in_menu" value="1" placeholder="Մենյու" class="form-control">
                                     </div>
                                     <?php if(isset($_GET['page_type'])) {?>
-                                        <input type="hidden" value="1" name="<?php echo $_GET['page_type']; ?>">
+                                        <input type="hidden" value="1" name="page_type">
                                     <?php }?>
                                     <div class="col-md-2">
                                         <button style="float:right; width:100%" type="submit" class="btn btn-success btn-block">Ավելացնել </button>

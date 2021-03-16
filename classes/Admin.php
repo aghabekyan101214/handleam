@@ -48,14 +48,16 @@ class Admin extends Model{
         $parent_id = !empty($_POST['parent_category']) ? $_POST['parent_category'] : "NULL";
         if($parent_id != "NULL") $parent_id = intval($parent_id);
         $show_in_menu = !empty($_POST['show_in_menu']) ? intval($_POST['show_in_menu']) : 0;
-        $is_individual_order = !empty($_POST['is_individual_order']) ? intval($_POST['is_individual_order']) : 0;
-        $this->db->query("INSERT INTO `cat`(`title_am`, `title_en`,`title_ru`, `parent_id`, `show_in_menu`, `is_individual_order` )VALUES('".$_POST['title_am']."','".$_POST['title_en']."','".$_POST['title_ru']."', ".$parent_id.", ".$show_in_menu.", ".$is_individual_order.")");
+        $page_type = !empty($_POST['page_type']) ? intval($_POST['page_type']) : 0;
+        $this->db->query("INSERT INTO `cat`(`title_am`, `title_en`,`title_ru`, `parent_id`, `show_in_menu`, `page_type` )VALUES('".$_POST['title_am']."','".$_POST['title_en']."','".$_POST['title_ru']."', ".$parent_id.", ".$show_in_menu.", ".$page_type.")");
         header("Location: " . $_SERVER['HTTP_REFERER']);
         exit;
     }
 
     public function addGoodsType(){
         $this->db->query("INSERT INTO `goods_type`(`catID`, `title_am`, `title_en`,`title_ru` )VALUES('".$_POST['catID']."', '".$_POST['title_am']."','".$_POST['title_en']."','".$_POST['title_ru']."')");
+        header("Location: " . $_SERVER['HTTP_REFERER']);
+        exit;
     }
 
     public function addGoods (){
