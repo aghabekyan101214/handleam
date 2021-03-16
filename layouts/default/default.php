@@ -9,6 +9,7 @@
 		<div class="content-wrap">
 		<div class="content">
 		<?php include "layouts/default/inc/header.php"; ?>
+        <?php $categories = $cnt->getCat(['page_type' => ($_GET['page_type'] ?? 0)]); ?>
 		<!-- slider start -->
 		<section class="hero-slider-container">
 			<div class="hero-slider owl-carousel">
@@ -75,18 +76,18 @@
 				<div class="features-tab">
 					<div class="home-2-tab">
 						<ul role="tablist">
-							<?php $i=0; foreach($cnt->getCat() as $cat) { $i++; ?>
-                                <?php if (null !== $cat['parent_id']) continue; ?>
-							<li <?php if($i == 1) {?>class="active" <?php }?>>
-								<a href="#<?=$i?>" data-toggle="tab">
-								<?=$cat['title']?>
-								</a>
-							</li>
+							<?php foreach($categories as $bin => $cat) { ?>
+                            <?php if (null !== $cat['parent_id']) continue; ?>
+
+                                <li class="<?php if($bin == 0) echo 'active'; ?>">
+                                    <a href="#<?=$bin + 1; ?>" data-toggle="tab"><?=$cat['title']?></a>
+                                </li>
+
 							<?php }?>
 						</ul>
 					</div>
 					<div class="tab-content">
-						<?php $a=0; foreach($cnt->getCat() as $cat) { $a++; ?>
+						<?php $a=0; foreach($categories as $cat) { $a++; ?>
 						<div class="tab-pane <?php if($a == 1) {?>active<?php }?>" id="<?=$a?>">
 							<div class="row">
 								<div class="product-curosel product-curosel-style owl-carousel">
