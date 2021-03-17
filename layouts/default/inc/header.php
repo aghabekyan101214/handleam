@@ -82,7 +82,7 @@
                                             <?php if($has_children !== false) {?>
                                                 <ul class="dropdown" style="width:250px;">
                                                     <?php foreach($categories as $c) { if($c['parent_id'] != $cat['id']) continue; ?>
-                                                        <li><a href="#"><?php echo $c['title_'.$_SESSION['lang']]; ?></a></li>
+                                                        <li><a href="/shop?page_type=<?= $cat['page_type'] ?? 0; ?>&cat=<?= $c['id']; ?>"><?php echo $c['title_'.$_SESSION['lang']]; ?></a></li>
                                                     <?php }?>
                                                 </ul>
                                             <?php } ?>

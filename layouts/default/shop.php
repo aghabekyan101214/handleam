@@ -58,7 +58,6 @@
                                         <ul>
                                             <?php $lang = $_SESSION['lang'];
                                             foreach ($categories as $key => $value) { ?>
-                                                <?php if (null !== $value['parent_id']) continue; ?>
                                                 <li>
                                                     <label>
                                                         <input class="cat" data-id="<?= $value['id'] ?>"
