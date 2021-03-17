@@ -63,4 +63,5 @@ return [
     "author_backgammons" => "Հեղինակային Նարդի",
     "stone_backgammons" => "Սեղան Նարդի",
     "whole_range" => "Ամբողջ տեսականի",
+    "individul_order" => "Անհատական Պատվերներ"
 ];

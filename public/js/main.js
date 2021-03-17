@@ -394,8 +394,10 @@ $(function(){
 		    }
 		});
 		var amount = [$("#amount_start").val(), $("#amount_end").val()];
-
-		$.post('?cmd=ax_get_filtered_products', {cat: cat, type:type, amount:amount, orderby_rand:true}, function(data) {
+		let searchParams = new URLSearchParams(window.location.search);
+		let page_type = '';
+		if(searchParams.has('page_type')) page_type = '&page_type=' + searchParams.get('page_type');
+		$.post('?cmd=ax_get_filtered_products' + page_type, {cat: cat, type:type, amount:amount, orderby_rand:true}, function(data) {
 			var html = '';
 			$.each(data, function(index, val) {
 				html +='<div class="col-md-6 col-lg-4 col-sm-6">';

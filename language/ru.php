@@ -67,4 +67,5 @@ return [
     "author_backgammons" => "Нарды",
     "stone_backgammons" => "Нарды",
     "whole_range" => "Весь Ассортимент",
+    "individul_order" => "Индивидуальные Заказы"
 ];

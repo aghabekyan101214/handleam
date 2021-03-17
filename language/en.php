@@ -64,4 +64,5 @@ return [
     "author_backgammons" => "Backgammons",
     "stone_backgammons" => "Backgammons",
     "whole_range" => "Whole Range",
+    "individul_order" => "Individual Orders"
 ];

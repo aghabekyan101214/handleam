@@ -1,4 +1,4 @@
-<?php 
+<?php
 class User extends Model{
 
 	public function sendMail(){
@@ -95,13 +95,13 @@ class User extends Model{
 	function check_is_ajax() {
 	  	return isset($_SERVER['HTTP_X_REQUESTED_WITH']) AND
 	  	strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest';
-	  	
+
 	}
-	
+
 	public function getToCartJSON(){
 		echo json_encode($this->getToCart());
 	}
-	
+
 	public function addToCart(){
 		if(!isset($_POST["productID"]) || empty($_POST["productID"])){
 			return false;
@@ -128,14 +128,14 @@ class User extends Model{
 		}
 
 		echo "Product added to cart! Please update cart.";
-		
+
 	}
-	
+
 	public function removeToCart(){
 		if(!isset($_POST["productID"]) || empty($_POST["productID"])){
 			return false;
 		}
-		
+
 		if(isset($_SESSION["cart"][$_POST["productID"]])){
 			unset($_SESSION["cart"][$_POST["productID"]]);
 		}
@@ -144,16 +144,20 @@ class User extends Model{
 		exit;
 	}
 
-	public function get_filter(){
+	public function get_filter($page_type = 0){
 		return [
-			"cat" => $this->db->query("SELECT * FROM cat")->fetch_all(MYSQLI_ASSOC),
+			"cat" => $this->db->query("SELECT * FROM cat WHERE `page_type`=".intval($page_type)."")->fetch_all(MYSQLI_ASSOC),
 			"type" => $this->db->query("SELECT * FROM goods_type")->fetch_all(MYSQLI_ASSOC)
 		];
 	}
 
 	public function ax_get_filtered_products(){
 		$where = ' `goods`.`id` IS NOT NULL ';
-        
+		$page_type = $_GET['page_type'] ?? 0;
+		$categories = $this->get_filter($page_type)['cat'];
+        $cat_ids = array_column($categories, 'id');
+        $ids = implode("','", $cat_ids);
+        $where .= " AND `catID` IN ('".$ids."')";
         if(isset($_POST['orderby_rand']) && $_POST['orderby_rand']=="true"){
             $orderBy = "ORDER BY RAND()";
         }else{
@@ -186,7 +190,7 @@ class User extends Model{
 		}
 
 		$query = $this->db->query("SELECT * FROM `goods` WHERE $where GROUP BY `goods`.`id` $orderBy");
-		
+
 		if ($query->num_rows > 0) {
             $data = [];
             foreach($query->fetch_all(MYSQLI_ASSOC) as $item){
@@ -202,7 +206,7 @@ class User extends Model{
 		exit;
 
 	}
-	
+
 
 
     public function getPay(){
@@ -218,13 +222,13 @@ class User extends Model{
             echo 'Լրացրեք պարտադիր դաշտերը';
             exit;
         }
-        
+
         $order_date = json_encode($_SESSION['cart'], JSON_UNESCAPED_UNICODE);
-        
+
         $this->db->query("INSERT INTO `order`(`order_data`, `pay_method`, `mdorder`, `pay_amount`, `status`, `client_name`, `client_phone`, `client_address`, `date`) VALUES ('".$order_date."', '".@$_POST['method']."', '', '".@$_POST["amount"]."', '0', '".@$_POST["name"]."', '".@$_POST["phone"]."', '".@$_POST["address"]."', NOW())");
         $orderID = $this->db->insert_id;
         $_SESSION['cart'] = [];
-        
+
         if($_POST['method'] == "card"){
             $this->getPayArca($_POST["amount"], $orderID);
         }elseif($_POST['method'] == "cache") {
@@ -235,7 +239,7 @@ class User extends Model{
             exit;
         }
     }
-    
+
     private function getPayArca($amount, $orderID){
         $merchant = '34540688_api';
         $password = 'Nq5tBahb';
@@ -244,7 +248,7 @@ class User extends Model{
         $language = 'hy';
         $description = urlencode('Handle.am / Payment');
         $arcaID = $orderID;
-        
+
         if($data = file_get_contents('https://ipay.arca.am/payment/rest/register.do?userName='.$merchant.'&password='.$password.'&orderNumber='.$arcaID.'&amount='.$amount.'00&currency='.$currency.'&returnUrl='.$return_url.'&description='.$description.'&language='.$language.'')){
             $data = json_decode($data);
             if(!isset($data->orderId)){
@@ -267,7 +271,7 @@ class User extends Model{
             exit;
         }
     }
-    
+
     public function getConfirmArca(){
         $merchant = '34540688_api';
         $password = 'Nq5tBahb';
@@ -279,7 +283,7 @@ class User extends Model{
                 $amount = substr($data->depositAmount, 0, -2);
                 $arca_error_code = $data->ErrorCode;
                 $arca_order_status = $data->OrderStatus;
-                if($arca_error_code == 0 && $arca_order_status == 2 && $amount > 0){          
+                if($arca_error_code == 0 && $arca_order_status == 2 && $amount > 0){
                     $arca_res = $this->db->query("SELECT * FROM `order` WHERE `mdorder`='$orderId' AND `status`='0'");
                     if($arca_res->num_rows==1){
                         $arca_row = $arca_res->fetch_assoc();
@@ -294,5 +298,5 @@ class User extends Model{
 
 
 
- 
+
 }

@@ -93,6 +93,7 @@
                                     <li><a href="/about"><?=$cnt->val['about']?></a></li>
                                     <!--<li><a href="/blog"><?=$cnt->val['blog']?></a></li>-->
                                     <li><a href="/contact"><?=$cnt->val['contact']?></a></li>
+                                    <li><a href="/shop?page_type=1"><?=$cnt->val['individul_order']?></a></li>
                                 </ul>
                             </nav>
                         </div>

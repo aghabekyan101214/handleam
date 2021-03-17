@@ -4,12 +4,15 @@
 <head>
     <title>Handle | <?= $cnt->val['shop'] ?></title>
     <?php include "layouts/default/inc/head.php"; ?>
+
 </head>
 <body>
 <div class="canvas-wrapper">
     <div class="content-wrap">
         <div class="content">
             <?php include "layouts/default/inc/header.php"; ?>
+            <?php $categories = $cnt->getCat(['page_type' => ($_GET['page_type'] ?? 0)]); ?>
+            <?php $goodsTypes = $cnt->getGoodsType(['filter_in_categories' => array_column($categories, 'id')]); ?>
             <!-- breadcrumbs start -->
             <div class="breadcrumbs-area breadcrumb-bg ptb-50">
                 <div class="container">
@@ -54,7 +57,8 @@
                                     <div class="sidebar-list">
                                         <ul>
                                             <?php $lang = $_SESSION['lang'];
-                                            foreach ($cnt->get_filter()['cat'] as $key => $value) { ?>
+                                            foreach ($categories as $key => $value) { ?>
+                                                <?php if (null !== $value['parent_id']) continue; ?>
                                                 <li>
                                                     <label>
                                                         <input class="cat" data-id="<?= $value['id'] ?>"
@@ -71,7 +75,7 @@
                                     <div class="sidebar-list">
                                         <ul>
                                             <?php $lang = $_SESSION['lang'];
-                                            foreach ($cnt->get_filter()['type'] as $key => $value) { ?>
+                                            foreach ($goodsTypes as $key => $value) { ?>
                                                 <li class="goods-type type-<?= $value['catID'] ?>">
                                                     <label>
                                                         <input class="type" data-id="<?= $value['id'] ?>"

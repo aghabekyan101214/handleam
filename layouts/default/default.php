@@ -76,18 +76,19 @@
 				<div class="features-tab">
 					<div class="home-2-tab">
 						<ul role="tablist">
-							<?php foreach($categories as $bin => $cat) { ?>
+							<?php $i = 1; foreach($categories as $cat) { ?>
                             <?php if (null !== $cat['parent_id']) continue; ?>
 
-                                <li class="<?php if($bin == 0) echo 'active'; ?>">
-                                    <a href="#<?=$bin + 1; ?>" data-toggle="tab"><?=$cat['title']?></a>
+                                <li class="<?php if($i == 1) echo 'active'; ?>">
+                                    <a href="#<?=$i; ?>" data-toggle="tab"><?=$cat['title']?></a>
                                 </li>
 
-							<?php }?>
+							<?php $i++; }?>
 						</ul>
 					</div>
 					<div class="tab-content">
-						<?php $a=0; foreach($categories as $cat) { $a++; ?>
+						<?php $a=1; foreach($categories as $cat) { ?>
+                        <?php if (null !== $cat['parent_id']) continue; ?>
 						<div class="tab-pane <?php if($a == 1) {?>active<?php }?>" id="<?=$a?>">
 							<div class="row">
 								<div class="product-curosel product-curosel-style owl-carousel">
@@ -159,7 +160,7 @@
 								</div>
 							</div>
 						</div>
-						<?php }?>
+						<?php $a++;  }?>
 					</div>
 				</div>
 			</div>
