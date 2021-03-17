@@ -74,7 +74,6 @@
                         <div class="main-menu f-right">
                             <nav>
                                 <ul>
-                                    <li><a href="/shop"><?=$cnt->val['shop']?></a></li>
                                     <?php foreach($categories as $cat) { if (!$cat['show_in_menu']) continue; ?>
                                         <li>
                                             <a href="#"><?php echo $cat['title_'.$_SESSION['lang']]?></a>
@@ -84,6 +83,9 @@
                                                     <?php foreach($categories as $c) { if($c['parent_id'] != $cat['id']) continue; ?>
                                                         <li><a href="/shop?page_type=<?= $cat['page_type'] ?? 0; ?>&cat=<?= $c['id']; ?>"><?php echo $c['title_'.$_SESSION['lang']]; ?></a></li>
                                                     <?php }?>
+                                                    <?php if (mb_strtolower($cat['title_am']) == 'նարդի' || mb_strtolower($cat['title_am']) == 'նարդիներ') { ?>
+                                                        <li><a href="/shop?page_type=1"><?=$cnt->val['individul_order']?></a></li>
+                                                    <?php } ?>
                                                 </ul>
                                             <?php } ?>
                                         </li>
@@ -93,7 +95,6 @@
                                     <li><a href="/about"><?=$cnt->val['about']?></a></li>
                                     <!--<li><a href="/blog"><?=$cnt->val['blog']?></a></li>-->
                                     <li><a href="/contact"><?=$cnt->val['contact']?></a></li>
-                                    <li><a href="/shop?page_type=1"><?=$cnt->val['individul_order']?></a></li>
                                 </ul>
                             </nav>
                         </div>
