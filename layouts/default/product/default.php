@@ -28,7 +28,7 @@ $goods_price = $goods['price'];
         <div class="content">
             <?php include "layouts/default/inc/header.php"; ?>
             <!-- breadcrumbs start -->
-            <div class="breadcrumbs-area breadcrumb-bg ptb-50">
+            <div class="breadcrumbs-area breadcrumb-bg pt-120 pb-50">
                 <div class="container">
                     <div class="breadcrumbs text-center">
                         <h2 class="breadcrumb-title"><?=$goods['title']?></h2>

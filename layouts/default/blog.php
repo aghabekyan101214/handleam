@@ -10,7 +10,7 @@
         <div class="content">
             <!-- breadcrumbs start -->
             <?php include "layouts/default/inc/header.php"; ?>
-            <div class="breadcrumbs-area breadcrumb-bg ptb-50">
+            <div class="breadcrumbs-area breadcrumb-bg pt-120 pb-50">
                 <div class="container">
                     <div class="breadcrumbs text-center">
                         <h2 class="breadcrumb-title"><?=$cnt->val['blog']?></h2>

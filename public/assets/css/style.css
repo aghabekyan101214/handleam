@@ -1905,6 +1905,7 @@ a.dec.qtybutton {
 .breadcrumb-bg {
     background: rgba(0, 0, 0, 0) url("/public/assets/img/bg/2.jpg") repeat scroll center center / cover;
     position: relative;
+    z-index: 2;
 }
 .breadcrumb-bg:before {
     position: absolute;
