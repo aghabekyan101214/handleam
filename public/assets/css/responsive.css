@@ -50,9 +50,9 @@
     .shop-img .button-group a i {
         margin-right: 2px;
     }
-    .shop-img .button-group a {
+    /*.shop-img .button-group a {
         width: 55%;
-    }
+    }*/
     .shop-img .button-group a.wishlist {
         width: 45%;
     }

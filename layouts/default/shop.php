@@ -14,7 +14,7 @@
             <?php $categories = $cnt->getCat(['page_type' => ($_GET['page_type'] ?? 0)]); ?>
             <?php $goodsTypes = $cnt->getGoodsType(['filter_in_categories' => array_column($categories, 'id')]); ?>
             <!-- breadcrumbs start -->
-            <div class="breadcrumbs-area breadcrumb-bg ptb-50">
+            <div class="breadcrumbs-area breadcrumb-bg pt-120 pb-50">
                 <div class="container">
                     <div class="breadcrumbs text-center">
                         <h2 class="breadcrumb-title"><?= $cnt->val['shop'] ?></h2>

@@ -241,6 +241,9 @@ a.top-cart > i {
 .cart-img {
     float: left;
 }
+.cart-img img {
+    object-fit: cover;
+}
 .cart-content {
     float: left;
     padding-left: 15px;
@@ -1902,6 +1905,7 @@ a.dec.qtybutton {
 .breadcrumb-bg {
     background: rgba(0, 0, 0, 0) url("/public/assets/img/bg/2.jpg") repeat scroll center center / cover;
     position: relative;
+    z-index: 2;
 }
 .breadcrumb-bg:before {
     position: absolute;
@@ -2412,6 +2416,9 @@ h1.cart-heading {
 }
 .table-content table td.product-thumbnail {
     width: 130px;
+}
+.table-content table td.product-thumbnail img {
+    object-fit: cover;
 }
 .table-content table td.product-remove i {
     color: #000;
