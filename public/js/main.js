@@ -425,7 +425,7 @@ $(function(){
                     html +='		</div>';
                 }
 				html +='			<div class="button-group">';
-				html +='				<a class="plus add-to-cart" data-id="'+val.id+'" role="button" title="Ավելացնել զամբյուղ">';
+				html +='				<a class="plus add-to-cart" data-id="'+val.id+'" role="button" title="">';
 				html +='				<i class="pe-7s-cart"></i>';
 				html +=' 				'+config.val.add_cart+'';
 				html +='				</a>';
