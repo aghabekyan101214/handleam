@@ -31,7 +31,7 @@
 		</section>
 		<!-- slider end -->
 		<!-- banner style 2 start -->
-		<div class="banner-style-3 pt-50">
+		<div class="banner-style-3 pt-50 big_banner">
 			<div class="container">
 				<div class="section-title text-center mb-30">
 					<h2><?=$cnt->val['top_collections']?> <i class="fa fa-shopping-cart"></i></h2>
