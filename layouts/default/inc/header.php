@@ -75,9 +75,9 @@
                             <nav>
                                 <ul>
                                     <?php foreach($categories as $cat) { if (!$cat['show_in_menu']) continue; ?>
-                                        <li>
-                                            <a href="#"><?php echo $cat['title_'.$_SESSION['lang']]?></a>
-                                            <?php $has_children = array_search($cat['id'], array_column($categories, 'parent_id'));?>
+                                        <?php $has_children = array_search($cat['id'], array_column($categories, 'parent_id'));?>
+                                        <li class="<?php if($has_children) echo 'has-sub' ?>">
+                                            <a href="/shop?page_type=<?= $cat['page_type'] ?? 0; ?>&cat=<?= $cat['id']; ?>"><?php echo $cat['title_'.$_SESSION['lang']]?></a>
                                             <?php if($has_children !== false) {?>
                                                 <ul class="dropdown" style="width:250px;">
                                                     <?php foreach($categories as $c) { if($c['parent_id'] != $cat['id']) continue; ?>

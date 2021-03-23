@@ -139,15 +139,42 @@
 <script src="/public/assets/js/main3.js"></script>
 <!--Start of Tawk.to Script-->
 <script type="text/javascript">
-    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-    (function(){
-        var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-        s1.async=true;
-        s1.src='https://embed.tawk.to/60490e2b385de407571ec1da/1f0elums9';
-        s1.charset='UTF-8';
-        s1.setAttribute('crossorigin','*');
-        s0.parentNode.insertBefore(s1,s0);
-    })();
+    <?php if(!isset($_SESSION['lang']) || $_SESSION['lang'] == 'en') { ?>
+        var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+        (function(){
+            var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+            s1.async=true;
+            s1.src='https://embed.tawk.to/60490e2b385de407571ec1da/1f0elums9';
+            s1.charset='UTF-8';
+            s1.setAttribute('crossorigin','*');
+            s1.lang='en'
+            s0.parentNode.insertBefore(s1,s0);
+        })();
+    <?php } elseif (isset($_SESSION['lang']) && $_SESSION['lang'] == 'ru') {?>
+    <!--Start of Tawk.to Script-->
+        var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+        (function(){
+            var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+            s1.async=true;
+            s1.src='https://embed.tawk.to/60598f03067c2605c0bb4094/1f1etda0b';
+            s1.charset='UTF-8';
+            s1.setAttribute('crossorigin','*');
+            s0.parentNode.insertBefore(s1,s0);
+        })();
+    <!--End of Tawk.to Script-->
+    <?php } else { ?>
+    <!--Start of Tawk.to Script-->
+        var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+            (function(){
+            var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+            s1.async=true;
+            s1.src='https://embed.tawk.to/60598fd3f7ce18270932e3c5/1f1etjkrt';
+            s1.charset='UTF-8';
+            s1.setAttribute('crossorigin','*');
+            s0.parentNode.insertBefore(s1,s0);
+        })();
+    <!--End of Tawk.to Script-->
+    <?php } ?>
 </script>
 <!--End of Tawk.to Script-->
 <script>
