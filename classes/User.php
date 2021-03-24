@@ -159,7 +159,7 @@ class User extends Model{
         $ids = implode("','", $cat_ids);
         $where .= " AND `catID` IN ('".$ids."')";
         if(isset($_POST['orderby_rand']) && $_POST['orderby_rand']=="true"){
-            $orderBy = "ORDER BY RAND()";
+            $orderBy = "ORDER BY `finalPrice` ASC";
         }else{
             $orderBy = "ORDER BY `goods`.`id` DESC";
         }
@@ -189,7 +189,7 @@ class User extends Model{
 			$where .= ' AND `goods`.`price`<='.$_POST['amount'][1].'';
 		}
 
-		$query = $this->db->query("SELECT * FROM `goods` WHERE $where GROUP BY `goods`.`id` $orderBy");
+		$query = $this->db->query("SELECT *, CASE WHEN `discount` > 0 THEN `price` - (`price` * discount / 100) ELSE `price` END AS `finalPrice` FROM `goods` WHERE $where GROUP BY `goods`.`id` $orderBy");
 
 		if ($query->num_rows > 0) {
             $data = [];
