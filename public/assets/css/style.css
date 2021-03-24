@@ -359,7 +359,6 @@ a.top-cart > i {
     display: inline-block;
     position: relative;
     line-height: normal;
-    padding-right: 15px;
 }
 .main-menu nav > ul > li.has-sub a {
     padding-right: 15px !important;

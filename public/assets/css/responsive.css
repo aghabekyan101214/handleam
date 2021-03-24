@@ -64,7 +64,7 @@
         margin-top: 30px;
     }
     .home-style-2 .main-menu nav > ul > li > a {
-        padding: 30px 7px;
+        padding: 30px 7px !important;
     }
     .banner-style-2-dec > h3 {
         font-size: 25px;
@@ -632,7 +632,7 @@
     .quick-view .nav.nav-tabs img {
         width: 75px;
     }
-    .main-menu nav > ul > li.has_sub a:before {
+    .main-menu nav > ul > li.has-sub a:before {
         display: none;
     }
 }
