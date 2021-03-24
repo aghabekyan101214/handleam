@@ -360,6 +360,21 @@ a.top-cart > i {
     position: relative;
     line-height: normal;
 }
+.main-menu nav > ul > li.has_sub a {
+    padding-right: 15px;
+}
+.main-menu nav > ul > li.has_sub a:before {
+    content: "";
+    position: absolute;
+    color: inherit;
+    border-style: solid;
+    border-left-color: transparent;
+    border-right-color: transparent;
+    border-width: 3px 3px 0;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
 
 .main-menu nav > ul > li > a {
     color: #fff;

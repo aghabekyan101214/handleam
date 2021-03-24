@@ -632,6 +632,9 @@
     .quick-view .nav.nav-tabs img {
         width: 75px;
     }
+    .main-menu nav > ul > li.has_sub a:before {
+        display: none;
+    }
 }
 
 @media only screen and (max-width: 420px) {
