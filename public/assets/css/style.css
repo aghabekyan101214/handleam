@@ -360,10 +360,10 @@ a.top-cart > i {
     position: relative;
     line-height: normal;
 }
-.main-menu nav > ul > li.has-sub a {
+.main-menu nav > ul > li.has-sub>a {
     padding-right: 15px !important;
 }
-.main-menu nav > ul > li.has-sub a:before {
+.main-menu nav > ul > li.has-sub>a:before {
     content: "";
     position: absolute;
     color: inherit;

@@ -632,7 +632,7 @@
     .quick-view .nav.nav-tabs img {
         width: 75px;
     }
-    .main-menu nav > ul > li.has-sub a:before {
+    .main-menu nav > ul > li.has-sub>a:before {
         display: none;
     }
 }
