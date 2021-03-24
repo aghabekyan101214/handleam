@@ -359,11 +359,12 @@ a.top-cart > i {
     display: inline-block;
     position: relative;
     line-height: normal;
-}
-.main-menu nav > ul > li.has_sub a {
     padding-right: 15px;
 }
-.main-menu nav > ul > li.has_sub a:before {
+.main-menu nav > ul > li.has-sub a {
+    padding-right: 15px !important;
+}
+.main-menu nav > ul > li.has-sub a:before {
     content: "";
     position: absolute;
     color: inherit;
