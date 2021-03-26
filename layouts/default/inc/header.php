@@ -21,7 +21,7 @@
                 <div class="col-md-2 col-sm-4 col-xs-5 header_logo_block">
                     <div class="logo">
                         <a href="/">
-                            <img src="/public/assets/img/logo/logo-black.png" alt="">
+                            <img src="/public/assets/img/logo/handle-logo.png" alt="">
                         </a>
                     </div>
                 </div>

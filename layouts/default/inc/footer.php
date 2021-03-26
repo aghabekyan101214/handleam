@@ -7,7 +7,7 @@
                     <div class="footer-widget mb-30">
                         <div class="footer-logo">
                             <a href="/">
-                                <img src="/public/assets/img/logo/logo-black.png" alt="">
+                                <img src="/public/assets/img/logo/handle-logo.png" alt="">
                             </a>
                         </div>
                         <div class="widget-info">
