@@ -159,7 +159,7 @@ class User extends Model{
         $ids = implode("','", $cat_ids);
         $where .= " AND `catID` IN ('".$ids."')";
         if(isset($_POST['orderby_rand']) && $_POST['orderby_rand']=="true"){
-            $orderBy = "ORDER BY `finalPrice` ASC";
+            $orderBy = "ORDER BY `status` DESC, `finalPrice` ASC";
         }else{
             $orderBy = "ORDER BY `goods`.`id` DESC";
         }
