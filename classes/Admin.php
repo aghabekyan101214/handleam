@@ -175,8 +175,8 @@ class Admin extends Model{
                 $this->db->query("INSERT INTO `photo` (`group`, `parent`, `sort`) VALUES ('".$_POST['group']."', '".$_POST['parent']."', '1')");
                     $name = $this->db->insert_id.".jpg";
                 if ($group=='goods') {
-	                addImage($_FILES['file']['tmp_name'][$key], "public/gallery/$group/small/" . $name, 400, 230, 'crop', false);
-	                addImage($_FILES['file']['tmp_name'][$key], "public/gallery/$group/large/" . $name, 900, 700, 'crop', false);
+	                addImage($_FILES['file']['tmp_name'][$key], "public/gallery/$group/small/" . $name, 400, 230, null, false);
+	                addImage($_FILES['file']['tmp_name'][$key], "public/gallery/$group/large/" . $name, 900, 700, null, false);
 
                 } elseif ($group=='blog'){
 	                addImage($_FILES['file']['tmp_name'][$key], "public/gallery/$group/small/".$name, 600, 400, 'crop', false);
