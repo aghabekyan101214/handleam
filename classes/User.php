@@ -165,9 +165,18 @@ class User extends Model{
         }
 
 		if (!empty($_POST['cat'])) {
+		    $cats = $_POST['cat'];
+		    foreach ($categories as $c){
+//                if($c['id'] == $_POST['cat'][0] && !is_null($c['parent_id']) ){
+//                    $cats []= $c['parent_id'];
+//                } else
+                if ($c['parent_id'] == $_POST['cat'][0]) {
+                    $cats []= $c['id'];
+                }
+            }
 			$where_cat = '';
 			$or = '';
-			foreach ($_POST['cat'] as $key => $value) {
+			foreach ($cats as $key => $value) {
 				$where_cat .= " $or `goods`.`catID` = '".$value."' ";
 				$or = 'OR';
 			}
