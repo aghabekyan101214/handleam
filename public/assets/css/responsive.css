@@ -12,6 +12,9 @@
     .quick-view .container .main-view {
         padding: 30px;
     }
+    .shop-img img {
+        height: 180px;
+    }
 }
 /* Normal desktop :992px. */
 @media (min-width: 992px) and (max-width: 1199px) {
@@ -634,6 +637,9 @@
     }
     .main-menu nav > ul > li.has-sub>a:before {
         display: none;
+    }
+    .shop-img img {
+        height: auto;
     }
 }
 
