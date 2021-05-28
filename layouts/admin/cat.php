@@ -122,6 +122,7 @@
                                            <select class="select2" name="catID" required>
                                           <option value="">-----</option>
                                            <?php foreach($categories as $cat) {?>
+                                           <?php if(!is_null($cat['parent_id'])) continue; ?>
                                             <option value="<?=$cat['id']?>"><?=$cat['title']?></option>
                                             <?php }?>
                                         </select>
