@@ -44,6 +44,11 @@ class Admin extends Model{
         unset($_SESSION['admin']);
     }
 
+    public function getCategory($cat_id)
+    {
+        return $this->db->query("SELECT * FROM `cat` WHERE `id` = ".$cat_id." ")->fetch_assoc();
+    }
+
     public function addCat(){
         $parent_id = !empty($_POST['parent_category']) ? $_POST['parent_category'] : "NULL";
         if($parent_id != "NULL") $parent_id = intval($parent_id);

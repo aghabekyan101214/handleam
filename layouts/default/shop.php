@@ -12,7 +12,16 @@
         <div class="content">
             <?php include "layouts/default/inc/header.php"; ?>
             <?php $categories = $cnt->getCat(['page_type' => ($_GET['page_type'] ?? 0)]); ?>
-            <?php $goodsTypes = $cnt->getGoodsType(['filter_in_categories' => array_column($categories, 'id')]); ?>
+            <?php
+            $category_ids = [];
+            foreach ($categories as $c) {
+                $val = $c['parent_id'] ?? $c['id'];
+                if(!in_array($val, $category_ids)) {
+                    $category_ids []= $val;
+                }
+            }
+            ?>
+            <?php $goodsTypes = $cnt->getGoodsType(['filter_in_categories' => $category_ids]); ?>
             <!-- breadcrumbs start -->
             <div class="breadcrumbs-area breadcrumb-bg pt-120 pb-50">
                 <div class="container">
@@ -60,7 +69,7 @@
                                             foreach ($categories as $key => $value) { ?>
                                                 <li>
                                                     <label>
-                                                        <input class="cat" data-id="<?= $value['id'] ?>"
+                                                        <input class="cat" data-filter-by="<?= $value['parent_id'] ?? $value['id'] ?>" data-id="<?= $value['id'] ?>"
                                                                type="radio" name="cat" <?php if(@$_GET['cat'] == $value['id']){echo "checked";} ?>>
                                                         <span style="margin-left:8px;"><?= $value['title_' . $lang] ?></span>
                                                     </label>

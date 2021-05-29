@@ -378,7 +378,7 @@ $(function(){
 		if($(this).hasClass("cat")){
             $(".goods-type").css("display", "none");
             $(".type").prop("checked", false);
-            var id = $(this).data("id");
+            var id = $(this).data("filter-by");
 			$(".type-"+id).css("display", "block");
 		}
 		var cat = [];

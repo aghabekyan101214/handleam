@@ -5,6 +5,9 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
     header('location: /admin/goods');
 }
 $goods = $cnt->getGoods(["id" => $goodsID]);
+$category = $cnt->getCategory($goods['catID']);
+$category_id = $category['parent_id'] ?? $category['id'];
+
 if (!isset($goods["id"]) || empty($goods["id"])) {
     header('location: /admin/goods');
 }
@@ -32,7 +35,7 @@ if (!isset($goods["id"]) || empty($goods["id"])) {
                     <div class="row">
                         <div class="col-md-3">
                             <label>Ընտրեք բաժինը</label>
-                            <select class="select2 live" name="catID" required
+                            <select class="select2 live categories" name="catID" required
                                     data-live="goods, catID, id, <?php echo $goods['id'] ?>"
                                     value="<?php echo $cat['catID'] ?>">
                                 <?php foreach ($cnt->getCat() as $cat) { ?>
@@ -47,7 +50,7 @@ if (!isset($goods["id"]) || empty($goods["id"])) {
                             <select class="select2 live" name="goodsTypeID" required
                                     data-live="goods, typeID, id, <?php echo $goods['id'] ?>"
                                     value="<?php echo $cat['typeID'] ?>">
-                                <?php foreach ($cnt->getGoodsType(["catID" => $goods['catID']]) as $goodsType) { ?>
+                                <?php foreach ($cnt->getGoodsType(["catID" => $category_id]) as $goodsType) { ?>
                                     <option <?php if ($goodsType['id'] == $goods['typeID']) { ?> selected <?php } ?>
                                             value="<?= $goodsType['id'] ?>"><?= $goodsType['title'] ?></option>
                                 <?php } ?>
