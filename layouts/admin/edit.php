@@ -50,6 +50,7 @@ if (!isset($goods["id"]) || empty($goods["id"])) {
                             <select class="select2 live" name="goodsTypeID" required
                                     data-live="goods, typeID, id, <?php echo $goods['id'] ?>"
                                     value="<?php echo $cat['typeID'] ?>">
+                                <option value="">Ընտրեք տեսակը</option>
                                 <?php foreach ($cnt->getGoodsType(["catID" => $category_id]) as $goodsType) { ?>
                                     <option <?php if ($goodsType['id'] == $goods['typeID']) { ?> selected <?php } ?>
                                             value="<?= $goodsType['id'] ?>"><?= $goodsType['title'] ?></option>
