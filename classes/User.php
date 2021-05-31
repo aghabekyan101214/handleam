@@ -1,6 +1,10 @@
 <?php
+
 class User extends Model
 {
+
+    const SECRET_KEY = '110001079';
+    const EDP_REC_ACCOUNT = 'Qav3qVgmwHRr9TsrbqaFxAxgMNn8u5gF6TUaDP';
 
     public function sendMail()
     {
@@ -250,7 +254,8 @@ class User extends Model
         if ($_POST['method'] == "card") {
             $this->getPayArca($_POST["amount"], $orderID);
         } elseif ($_POST['method'] == "idram") {
-            $this->getPayIdram($_POST["amount"], $orderID);
+            echo '{"order_id":"' . $orderID . '"}';
+            exit;
         } elseif ($_POST['method'] == "cache") {
             echo "ok";
             exit;
@@ -266,23 +271,23 @@ class User extends Model
         $lang = strtoupper($_SESSION['lang'] ?? 'AM');
         $account = "100000114";
 
-        $data  = [
+        $data = [
             "EDP_LANGUAGE" => $lang,
             "EDP_REC_ACCOUNT" => $account,
             "EDP_AMOUNT" => $amount,
             "EDP_BILL_NO" => $orderID,
-            "RESULT_URL" => urlencode('http://'.$_SERVER['HTTP_HOST'].'/?cmd=idramCallback')
+            "RESULT_URL" => urlencode('http://' . $_SERVER['HTTP_HOST'] . '/?cmd=idramCallback')
         ];
 
         $options = [
             'http' => [
-                'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
-                'method'  => 'POST',
+                'header' => "Content-type: application/x-www-form-urlencoded\r\n",
+                'method' => 'POST',
                 'content' => http_build_query($data)
             ]
         ];
 
-        $context  = stream_context_create($options);
+        $context = stream_context_create($options);
         $result = file_get_contents($url, false, $context);
 
         var_dump($result);
@@ -290,59 +295,62 @@ class User extends Model
 
     public function idramCallback()
     {
-        var_dump($_GET, $_REQUEST);die;
+        var_dump($_GET, $_REQUEST);
+        die;
     }
 
-    private function getPayArca($amount, $orderID){
+    private function getPayArca($amount, $orderID)
+    {
         $merchant = '34540688_api';
         $password = 'Nq5tBahb';
         $currency = '051';
-        $return_url = urlencode('http://'.$_SERVER['HTTP_HOST'].'/?cmd=getConfirmArca');
+        $return_url = urlencode('http://' . $_SERVER['HTTP_HOST'] . '/?cmd=getConfirmArca');
         $language = 'hy';
         $description = urlencode('Handle.am / Payment');
         $arcaID = $orderID;
 
-        if($data = file_get_contents('https://ipay.arca.am/payment/rest/register.do?userName='.$merchant.'&password='.$password.'&orderNumber='.$arcaID.'&amount='.$amount.'00&currency='.$currency.'&returnUrl='.$return_url.'&description='.$description.'&language='.$language.'')){
+        if ($data = file_get_contents('https://ipay.arca.am/payment/rest/register.do?userName=' . $merchant . '&password=' . $password . '&orderNumber=' . $arcaID . '&amount=' . $amount . '00&currency=' . $currency . '&returnUrl=' . $return_url . '&description=' . $description . '&language=' . $language . '')) {
             $data = json_decode($data);
-            if(!isset($data->orderId)){
+            if (!isset($data->orderId)) {
                 echo "Վճարման խափանում 1";
                 exit;
             }
             $orderId = $data->orderId;
             $form_url = $data->formUrl;
             $error_code = $data->errorCode;
-            if($error_code == 0 && $form_url != '') {
+            if ($error_code == 0 && $form_url != '') {
                 $this->db->query("UPDATE `order` SET `mdorder`='$orderId' WHERE `orderID`='$arcaID'");
-                echo '{"url":"'.$form_url.'"}';
+                echo '{"url":"' . $form_url . '"}';
                 exit;
-            }else{
+            } else {
                 echo "Վճարման խափանում 2";
                 exit;
             }
-        }else{
+        } else {
             echo "Վճարման խափանում 3";
             exit;
         }
     }
 
-    public function getConfirmArca(){
+    public function getConfirmArca()
+    {
         $merchant = '34540688_api';
         $password = 'Nq5tBahb';
         $language = 'hy';
         $orderId = $_GET['orderId'];
-        if(isset($orderId) && !empty($orderId)){
-            if($data = file_get_contents('https://ipay.arca.am/payment/rest/getOrderStatus.do?userName='.$merchant.'&password='.$password.'&orderId='.$orderId.'&language='.$language.'')){
+        if (isset($orderId) && !empty($orderId)) {
+            if ($data = file_get_contents('https://ipay.arca.am/payment/rest/getOrderStatus.do?userName=' . $merchant . '&password=' . $password . '&orderId=' . $orderId . '&language=' . $language . '')) {
                 $data = json_decode($data);
                 $amount = substr($data->depositAmount, 0, -2);
                 $arca_error_code = $data->ErrorCode;
                 $arca_order_status = $data->OrderStatus;
-                if($arca_error_code == 0 && $arca_order_status == 2 && $amount > 0){
+                if ($arca_error_code == 0 && $arca_order_status == 2 && $amount > 0) {
                     $arca_res = $this->db->query("SELECT * FROM `order` WHERE `mdorder`='$orderId' AND `status`='0'");
-                    if($arca_res->num_rows==1){
+                    if ($arca_res->num_rows == 1) {
                         $arca_row = $arca_res->fetch_assoc();
-                        $this->db->query("UPDATE `order` SET `pay_amount`='$amount', `status`='1' WHERE `orderID`='".$arca_row['orderID']."'");
-                        header('Location: http://'.$_SERVER['HTTP_HOST'].'/');
-						exit;
+                        $this->db->query("UPDATE `order` SET `pay_amount`='$amount', `status`='1' WHERE `orderID`='" . $arca_row['orderID'] . "'");
+                        header('Location: http://' . $_SERVER['HTTP_HOST'] . '/');
+                        exit;
                     }
                 }
             }
@@ -351,8 +359,43 @@ class User extends Model
 
     public function idramSuccessCallback()
     {
-        echo 'success';
-        exit;
+        if (isset($_REQUEST['EDP_PRECHECK']) && isset($_REQUEST['EDP_BILL_NO']) &&
+            isset($_REQUEST['EDP_REC_ACCOUNT']) && isset($_REQUEST['EDP_AMOUNT'])) {
+            if ($_REQUEST['EDP_PRECHECK'] == "YES") {
+                if ($_REQUEST['EDP_REC_ACCOUNT'] == self::EDP_REC_ACCOUNT) {
+                    $bill_no = $_REQUEST['EDP_BILL_NO'];
+                    $res = $this->db->query("SELECT * FROM `order` WHERE `mdorder`='$bill_no' AND `status`='0'");
+                    if($res->num_rows == 1) {
+                        echo("OK");
+                    }
+                }
+            }
+        }
+
+        if(isset($_REQUEST['EDP_PAYER_ACCOUNT']) && isset($_REQUEST['EDP_BILL_NO']) &&
+            isset($_REQUEST['EDP_REC_ACCOUNT']) && isset($_REQUEST['EDP_AMOUNT'])
+            && isset($_REQUEST['EDP_TRANS_ID']) && isset($_REQUEST['EDP_CHECKSUM']))
+        {
+            $txtToHash =
+
+                self::EDP_REC_ACCOUNT . ":" .
+                $_REQUEST['EDP_AMOUNT'] . ":" .
+                self::SECRET_KEY . ":" .
+                $_REQUEST['EDP_BILL_NO'] . ":" .
+                $_REQUEST['EDP_PAYER_ACCOUNT'] . ":" .
+                $_REQUEST['EDP_TRANS_ID'] . ":" .
+                $_REQUEST['EDP_TRANS_DATE'];
+
+            if(strtoupper($_REQUEST['EDP_CHECKSUM']) == strtoupper(md5($txtToHash)))
+            {
+                $amount = $_REQUEST['EDP_AMOUNT'];
+                $bill_no = $_REQUEST['EDP_BILL_NO'];
+                $res = $this->db->query("SELECT * FROM `order` WHERE `mdorder`='$bill_no' AND `status`='0'");
+                $res_row = $res->fetch_assoc();
+                $this->db->query("UPDATE `order` SET `pay_amount`='$amount', `status`='1' WHERE `orderID`='" . $res_row['orderID'] . "'");
+                echo("OK");
+            }
+        }
     }
 
     public function idramFailCallback()

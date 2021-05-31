@@ -482,8 +482,13 @@ $(function(){
 				return true;
 			}
 			if(isJson(data)){
-				data = JSON.parse(data)
-				document.location.replace(data.url);
+				data = JSON.parse(data);
+        if($(".method").val() == 'idram') {
+          $("input[name=EDP_BILL_NO]").val(data.order_id);
+          $("#idram-form").submit();
+        } else {
+          document.location.replace(data.url);
+        }
 				return true;
 			}
 			alert(data);

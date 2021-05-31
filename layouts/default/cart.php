@@ -216,6 +216,14 @@
                     </div>
                 </div>
             </div>
+            <form action="https://banking.idram.am/Payment/GetPayment" method="post" style="display: none" id="idram-form">
+                <input type="hidden" name="EDP_LANGUAGE" value="EN">
+                <input type="hidden" name="EDP_REC_ACCOUNT" value="110001079">
+                <input type="hidden" name="EDP_DESCRIPTION" value="Buy item">
+                <input type="hidden" name="EDP_AMOUNT" value="<?= $total; ?>">
+                <input type="hidden" name="EDP_BILL_NO">
+                <input type="submit" value="submit">
+            </form>
             <!-- quick view end -->
             <!-- shopping-cart-area end -->
             <?php include "layouts/default/inc/footer.php"; ?>
