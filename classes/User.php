@@ -359,6 +359,17 @@ class User extends Model
 
     public function idramSuccessCallback()
     {
+        echo 'success';
+    }
+
+    public function idramFailCallback()
+    {
+        echo 'fail';
+        exit;
+    }
+
+    public function idramResultCallback()
+    {
         if (isset($_REQUEST['EDP_PRECHECK']) && isset($_REQUEST['EDP_BILL_NO']) &&
             isset($_REQUEST['EDP_REC_ACCOUNT']) && isset($_REQUEST['EDP_AMOUNT'])) {
             if ($_REQUEST['EDP_PRECHECK'] == "YES") {
@@ -396,17 +407,6 @@ class User extends Model
                 echo("OK");
             }
         }
-    }
-
-    public function idramFailCallback()
-    {
-        echo 'fail';
-        exit;
-    }
-
-    public function idramResultCallback()
-    {
-        echo 'result';
         exit;
     }
 
