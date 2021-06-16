@@ -3,7 +3,7 @@
 class User extends Model
 {
 
-    const SECRET_KEY = '110001079';
+    const SECRET_KEY = 110001079;
     const EDP_REC_ACCOUNT = 'Qav3qVgmwHRr9TsrbqaFxAxgMNn8u5gF6TUaDP';
 
     public function sendMail()
@@ -373,7 +373,7 @@ class User extends Model
         if (isset($_REQUEST['EDP_PRECHECK']) && isset($_REQUEST['EDP_BILL_NO']) &&
             isset($_REQUEST['EDP_REC_ACCOUNT']) && isset($_REQUEST['EDP_AMOUNT'])) {
             if ($_REQUEST['EDP_PRECHECK'] == "YES") {
-                if ($_REQUEST['EDP_REC_ACCOUNT'] == self::EDP_REC_ACCOUNT) {
+                if ($_REQUEST['EDP_REC_ACCOUNT'] == self::SECRET_KEY) {
                     $bill_no = $_REQUEST['EDP_BILL_NO'];
                     $res = $this->db->query("SELECT * FROM `order` WHERE `orderID`='$bill_no' AND `status`='0'");
                     if($res->num_rows == 1) {
