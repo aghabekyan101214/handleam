@@ -359,12 +359,13 @@ class User extends Model
 
     public function idramSuccessCallback()
     {
-        echo 'success';
+        header('Location: http://' . $_SERVER['HTTP_HOST'] . '/');
+        exit;
     }
 
     public function idramFailCallback()
     {
-        echo 'fail';
+        header('Location: http://' . $_SERVER['HTTP_HOST'] . '/');
         exit;
     }
 
