@@ -375,7 +375,7 @@ class User extends Model
             if ($_REQUEST['EDP_PRECHECK'] == "YES") {
                 if ($_REQUEST['EDP_REC_ACCOUNT'] == self::EDP_REC_ACCOUNT) {
                     $bill_no = $_REQUEST['EDP_BILL_NO'];
-                    $res = $this->db->query("SELECT * FROM `order` WHERE `mdorder`='$bill_no' AND `status`='0'");
+                    $res = $this->db->query("SELECT * FROM `order` WHERE `orderID`='$bill_no' AND `status`='0'");
                     if($res->num_rows == 1) {
                         echo("OK");
                     }
@@ -401,7 +401,7 @@ class User extends Model
             {
                 $amount = $_REQUEST['EDP_AMOUNT'];
                 $bill_no = $_REQUEST['EDP_BILL_NO'];
-                $res = $this->db->query("SELECT * FROM `order` WHERE `mdorder`='$bill_no' AND `status`='0'");
+                $res = $this->db->query("SELECT * FROM `order` WHERE `orderID`='$bill_no' AND `status`='0'");
                 $res_row = $res->fetch_assoc();
                 $this->db->query("UPDATE `order` SET `pay_amount`='$amount', `status`='1' WHERE `orderID`='" . $res_row['orderID'] . "'");
                 echo("OK");
