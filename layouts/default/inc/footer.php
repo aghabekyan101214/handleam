@@ -102,6 +102,7 @@
                             <li><a href="#"><i class="fa fa-cc-visa"></i></a></li>
                             <li><a href="#"><i class="fa fa-cc-mastercard"></i></a></li>
                             <li><a href="#"><i class="fa fa-cc-amex"></i></a></li>
+                            <li><a href="#"><img src="/public/assets/img/logo/idram logo_rgb.png" alt="" style="display: block;height: 22px;"></a></li>
                         </ul>
                     </div>
                 </div>
